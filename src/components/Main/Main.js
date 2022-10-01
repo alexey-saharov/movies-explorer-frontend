@@ -10,7 +10,7 @@ function Main() {
       {/*<Header />*/}
       {/*<Promo />*/}
       {/*<NavTab />*/}
-      {/*<AboutProject />*/}
+      <AboutProject />
       <Techs />
       {/*<AboutMe />*/}
       {/*<Portfolio />*/}

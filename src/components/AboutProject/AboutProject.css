@@ -1,19 +1,17 @@
 .aboutProject {
-  margin: 0 auto 70px;
-  padding: 70px 18px 0 18px;
+  margin: 0 auto;
+  padding: 70px 18px;
   max-width: 100%;
   background-color: #202020;
 }
 @media screen and (min-width: 768px) {
   .aboutProject {
-    margin-bottom: 90px;
-    padding: 90px 50px 0 50px;
+    padding: 90px 50px;
   }
 }
 @media screen and (min-width: 1280px) {
   .aboutProject {
-    margin-bottom: 110px;
-    padding: 110px 70px 0 70px;
+    padding: 110px 70px;
   }
 }
 
@@ -124,7 +122,6 @@
 }
 
 .aboutProject__steps {
-  margin-bottom: 93px;
   display: grid;
   grid-template-rows: 35px minmax(min-content, max-content);
   grid-template-columns: minmax(100px, 1fr) minmax(184px, 4fr);

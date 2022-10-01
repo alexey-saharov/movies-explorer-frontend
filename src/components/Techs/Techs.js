@@ -1,42 +1,27 @@
-import React from 'react';
-import './AboutProject.css';
+import './Techs.css';
 
-function AboutProject() {
+function Techs() {
   return (
-    <section className="aboutProject">
-      <h2 className="aboutProject__title">О проекте</h2>
+    <section className="techs">
+      <h2 className="techs__title">Технологии</h2>
 
-      <div className="aboutProject__line"></div>
+      <div className="techs__line"></div>
 
-      <div className="aboutProject__content">
-        <div className="aboutProject__stepsCount">
-          <h3 className="aboutProject__subtitle">Дипломный проект включал 5 этапов</h3>
-          <p className="aboutProject__text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности
-            и финальные доработки.</p>
-        </div>
-        <div className="aboutProject__workDuration">
-          <h3 className="aboutProject__subtitle">На выполнение диплома ушло 5 недель</h3>
-          <p className="aboutProject__text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать,
-            чтобы успешно защититься.</p>
-        </div>
-      </div>
+      <h3 className="techs__subtitle">7 технологий</h3>
+      <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном
+        проекте.</p>
 
-      <div className="aboutProject__steps">
-        <div className="aboutProject__stepBackend">
-          1 неделя
-        </div>
-        <div className="aboutProject__stepFrontend">
-          4 недели
-        </div>
-        <div className="aboutProject__stepTitle">
-          Back-end
-        </div>
-        <div className="aboutProject__stepTitle">
-          Front-end
-        </div>
-      </div>
+      <ul className="techs__items">
+        <li className="techs__item">HTML</li>
+        <li className="techs__item">CSS</li>
+        <li className="techs__item">JS</li>
+        <li className="techs__item">React</li>
+        <li className="techs__item">Git</li>
+        <li className="techs__item">Express.js</li>
+        <li className="techs__item">mongoDB</li>
+      </ul>
     </section>
   );
 }
 
-export default AboutProject;
+export default Techs;
