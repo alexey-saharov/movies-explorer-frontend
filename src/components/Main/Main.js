@@ -14,11 +14,11 @@ function Main() {
     <>
       <Header parent={'Main'} />
       <Promo />
-      {/*<AboutProject />*/}
-      {/*<Techs />*/}
-      {/*<AboutMe />*/}
-      {/*<Portfolio />*/}
-      {/*<Footer />*/}
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+      <Footer />
     </>
   );
 }

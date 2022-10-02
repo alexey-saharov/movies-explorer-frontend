@@ -1,4 +1,5 @@
 import './AboutMe.css';
+import '../Link/Link.css';
 
 function AboutMe() {
   return (
@@ -17,9 +18,9 @@ function AboutMe() {
             Я живу в Тюмени, закончил факультет технической кибернетики ТГНГУ. У меня есть жена и дочь.
             Люблю слушать музыку, увлекаюсь сноубордом. Недавно начал кодить. С 2017 года работаю в компании
             «Газпром недра». После того, как прошёл курс по веб-разработке,
-            начал заниматься фриланс-заказами и проектами в компании.
+            занимаюсь фриланс-заказами и проектами в компании.
           </div>
-          <a className="aboutMe__githubLink aboutMe__link" href="https://github.com/alexey-saharov" target="_blank">
+          <a className="aboutMe__githubLink link" href="https://github.com/alexey-saharov" target="_blank">
             Github
           </a>
         </div>
