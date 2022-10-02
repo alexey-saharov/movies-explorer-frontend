@@ -69,7 +69,7 @@
   }
 }
 
-.portfolio__link {
+.portfolio__item-type {
   text-decoration: none;
   color: #fff;
 }
@@ -79,6 +79,14 @@
   text-decoration: none;
   color: #fff;
 }
+
+.portfolio__link {
+  transition: opacity .2s ease-in-out;
+}
+.portfolio__link:hover {
+  opacity: .8;
+}
+
 
 .portfolio__line {
   margin-bottom: 20px;

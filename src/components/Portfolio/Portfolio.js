@@ -8,10 +8,16 @@ function Portfolio() {
 
       <div className="portfolio__items">
         <li className="portfolio__item">
-          <a className="portfolio__link" href="https://alexey-saharov.github.io/how-to-learn/" target="_blank">
+          <a className="portfolio__item-type portfolio__link"
+             href="https://alexey-saharov.github.io/how-to-learn/"
+             target="_blank"
+          >
             Статичный сайт
           </a>
-          <a className="portfolio__arrow" href="https://alexey-saharov.github.io/how-to-learn/" target="_blank">
+          <a className="portfolio__arrow portfolio__link"
+             href="https://alexey-saharov.github.io/how-to-learn/"
+             target="_blank"
+          >
             ↗
           </a>
         </li>
@@ -19,10 +25,16 @@ function Portfolio() {
         <div className="portfolio__line"></div>
 
         <li className="portfolio__item">
-          <a className="portfolio__link" href="https://alexey-saharov.github.io/russian-travel/" target="_blank">
+          <a className="portfolio__item-type portfolio__link"
+             href="https://alexey-saharov.github.io/russian-travel/"
+             target="_blank"
+          >
             Адаптивный сайт
           </a>
-          <a className="portfolio__arrow" href="https://alexey-saharov.github.io/russian-travel/" target="_blank">
+          <a className="portfolio__arrow portfolio__link"
+             href="https://alexey-saharov.github.io/russian-travel/"
+             target="_blank"
+          >
             ↗
           </a>
         </li>
@@ -30,10 +42,16 @@ function Portfolio() {
         <div className="portfolio__line"></div>
 
         <li className="portfolio__item">
-          <a className="portfolio__link" href="https://mesto.lexasaharov.nomoredomains.sbs/sign-in" target="_blank">
+          <a className="portfolio__item-type portfolio__link"
+            href="https://mesto.lexasaharov.nomoredomains.sbs/sign-in"
+            target="_blank"
+          >
             Одностраничное приложение
           </a>
-          <a className="portfolio__arrow" href="https://mesto.lexasaharov.nomoredomains.sbs/sign-in" target="_blank">
+          <a className="portfolio__arrow portfolio__link"
+             href="https://mesto.lexasaharov.nomoredomains.sbs/sign-in"
+             target="_blank"
+          >
             ↗
           </a>
         </li>

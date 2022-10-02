@@ -8,7 +8,7 @@ function AboutMe() {
       <div className="aboutMe__line"></div>
 
       <div className="aboutMe__content">
-        <img className="aboutMe__photo" src={require('../../images/author_photo.jpg')} alt="Портрет автора сайта" />
+        <img className="aboutMe__photo" src={require('../../images/author-photo.jpg')} alt="Портрет автора сайта" />
 
         <div className="aboutMe__description">
           <div className="aboutMe__name">Алексей</div>
@@ -19,7 +19,7 @@ function AboutMe() {
             «Газпром недра». После того, как прошёл курс по веб-разработке,
             начал заниматься фриланс-заказами и проектами в компании.
           </div>
-          <a className="aboutMe__githubLink" href="https://github.com/alexey-saharov" target="_blank">
+          <a className="aboutMe__githubLink aboutMe__link" href="https://github.com/alexey-saharov" target="_blank">
             Github
           </a>
         </div>
