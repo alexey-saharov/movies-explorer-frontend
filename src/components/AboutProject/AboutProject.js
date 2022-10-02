@@ -4,36 +4,36 @@ function AboutProject() {
   return (
     <>
       <a id="learnMore"></a>
-      <section className="aboutProject">
+      <section className="about-project">
 
-        <h2 className="aboutProject__title">О проекте</h2>
+        <h2 className="about-project__title">О проекте</h2>
 
-        <div className="aboutProject__line"></div>
+        <div className="about-project__line"></div>
 
-        <div className="aboutProject__content">
-          <div className="aboutProject__stepsCount">
-            <h3 className="aboutProject__subtitle">Дипломный проект включал 5 этапов</h3>
-            <p className="aboutProject__text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности
+        <div className="about-project__content">
+          <div className="about-project__stepsCount">
+            <h3 className="about-project__subtitle">Дипломный проект включал 5 этапов</h3>
+            <p className="about-project__text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности
               и финальные доработки.</p>
           </div>
-          <div className="aboutProject__workDuration">
-            <h3 className="aboutProject__subtitle">На выполнение диплома ушло 5 недель</h3>
-            <p className="aboutProject__text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать,
+          <div className="about-project__workDuration">
+            <h3 className="about-project__subtitle">На выполнение диплома ушло 5 недель</h3>
+            <p className="about-project__text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать,
               чтобы успешно защититься.</p>
           </div>
         </div>
 
-        <div className="aboutProject__steps">
-          <div className="aboutProject__stepBackend">
+        <div className="about-project__steps">
+          <div className="about-project__stepBackend">
             1 неделя
           </div>
-          <div className="aboutProject__stepFrontend">
+          <div className="about-project__stepFrontend">
             4 недели
           </div>
-          <div className="aboutProject__stepTitle">
+          <div className="about-project__stepTitle">
             Back-end
           </div>
-          <div className="aboutProject__stepTitle">
+          <div className="about-project__stepTitle">
             Front-end
           </div>
         </div>

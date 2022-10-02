@@ -1,0 +1,32 @@
+.search-form {
+  padding: 80px 10px 10px;
+  background-color: #202020;
+}
+@media screen and (min-width: 540px) {
+  .search-form {
+    padding: 80px 20px 10px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .search-form {
+    padding: 80px 30px 10px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .search-form {
+    padding: 70px 70px 10px;
+  }
+}
+
+.search-form__line {
+  padding-left: 4px;
+  padding-right: 4px;
+  max-width: 100%;
+  border-bottom: 1px solid rgb(66, 66, 66);
+}
+@media screen and (min-width: 768px) {
+  .search-form__line {
+    padding: 0;
+  }
+}
+
