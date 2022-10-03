@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SearchForm.css';
 import searchForm_icon from '../../images/searchForm-icon.svg';
-import logo from "../../images/header-logo.svg";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm(props) {
   const [movie, setMovie] = useState('');
@@ -38,7 +38,7 @@ function SearchForm(props) {
         </div>
         <div className="search-form__search-filter">
           <div className="search-form__vertical-line"></div>
-          <div className="search-form__search-filter-checkbox"></div>
+          <FilterCheckbox />
           <p className="search-form__search-filter-text">Короткометражки</p>
         </div>
 
