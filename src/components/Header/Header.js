@@ -1,8 +1,8 @@
 import './Header.css';
 import '../Link/Link.css';
 import logo from '../../images/header-logo.svg';
-import menu_icon from '../../images/header-menu-icon.svg';
-import account_icon from '../../images/header-account-icon.svg';
+import menuIcon from '../../images/header-menu-icon.svg';
+import accountIcon from '../../images/header-account-icon.svg';
 
 function Header({ parent }) {
   const typeMain = (parent === 'Main');
@@ -47,7 +47,7 @@ function Header({ parent }) {
                 <a href="src/components/App#"
                    aria-label="Аккаунт"
                    className="header__menu-common-account-icon link"
-                   style = {{ backgroundImage: `url(${account_icon})`}}
+                   style = {{ backgroundImage: `url(${accountIcon})`}}
                 ></a>
               </div>
 
@@ -56,7 +56,7 @@ function Header({ parent }) {
             <a href="src/components/App#"
                aria-label="Иконка меню"
                className="header__menu-common-icon link"
-               style = {{ backgroundImage: `url(${menu_icon})`}}
+               style = {{ backgroundImage: `url(${menuIcon})`}}
             ></a>
           </>
         }

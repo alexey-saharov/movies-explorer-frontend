@@ -17,11 +17,11 @@ function Movies() {
 
   return (
     <>
-      {/*<Header />*/}
+      <Header />
       <SearchForm onSearchMovie={handleSearchMovie} />
       {/*<Preloader />*/}
-      {/*<MoviesCardList />*/}
-      {/*<Footer />*/}
+      <MoviesCardList />
+      <Footer />
     </>
   );
 }

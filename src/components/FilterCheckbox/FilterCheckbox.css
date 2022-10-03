@@ -9,12 +9,11 @@
   align-items: center;
   border-radius: 20px;
   background-color: #C0C0C0;
+  transition: padding-left .14s ease-in, background-color .14s ease-in;
 }
 
 .filterCheckbox_checked {
-  padding-left: 0;
-  padding-right: 2px;
-  flex-direction: row-reverse;
+  padding-left: 18px;
   background-color: #2BE080;
 }
 

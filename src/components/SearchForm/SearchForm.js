@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './SearchForm.css';
-import searchForm_icon from '../../images/searchForm-icon.svg';
+import searchFormIcon from '../../images/searchform-icon.svg';
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm(props) {
@@ -20,7 +20,7 @@ function SearchForm(props) {
 
       <form action="src/components/App#" className="search-form__form" onSubmit={handleSubmit}>
         <div className="search-form__search-field">
-          <div className="search-form__icon" style = {{ backgroundImage: `url(${searchForm_icon})`}}></div>
+          <div className="search-form__icon" style = {{ backgroundImage: `url(${searchFormIcon})`}}></div>
 
           <input
             type="text"
