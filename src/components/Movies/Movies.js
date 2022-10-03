@@ -6,10 +6,19 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
 function Movies() {
+
+  const handleSearchMovie = ({ movie }) => {
+    // поиск фильма в api
+    // api.get()
+    //   .then()
+    //   .catch();
+  };
+
+
   return (
     <>
       {/*<Header />*/}
-      <SearchForm />
+      <SearchForm onSearchMovie={handleSearchMovie} />
       {/*<Preloader />*/}
       {/*<MoviesCardList />*/}
       {/*<Footer />*/}
