@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import './FilterCheckbox.css';
 
 function FilterCheckbox() {
@@ -9,8 +9,8 @@ function FilterCheckbox() {
   };
 
   return (
-    <div className={`filterCheckbox ${isChecked && 'filterCheckbox_checked'}`} onClick={handleChange}>
-      <div className={`filterCheckbox__circle ${isChecked && 'filterCheckbox__circle_checked'}`}></div>
+    <div className={`filter-checkbox ${isChecked && 'filter-checkbox_checked'}`} onClick={handleChange}>
+      <div className={`filter-checkbox__circle ${isChecked && 'filter-checkbox__circle_checked'}`}></div>
     </div>
   );
 }

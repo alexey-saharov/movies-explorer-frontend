@@ -1,5 +1,5 @@
 import './Promo.css';
-import webWorld from "../../images/promo-web-world.svg";
+import webWorld from '../../images/promo-web-world.svg';
 
 function Promo() {
   return (

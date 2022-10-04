@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SearchForm.css';
 import searchFormIcon from '../../images/searchform-icon.svg';
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 function SearchForm(props) {
   const [movie, setMovie] = useState('');

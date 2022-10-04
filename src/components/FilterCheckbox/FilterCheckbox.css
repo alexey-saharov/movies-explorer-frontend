@@ -1,4 +1,4 @@
-.filterCheckbox {
+.filter-checkbox {
   margin-right: 14px;
   padding-left: 2px;
   box-sizing: border-box;
@@ -12,19 +12,19 @@
   transition: padding-left .14s ease-in, background-color .14s ease-in;
 }
 
-.filterCheckbox_checked {
+.filter-checkbox_checked {
   padding-left: 18px;
   background-color: #2BE080;
 }
 
-.filterCheckbox__circle {
+.filter-checkbox__circle {
   width: 16px;
   height: 16px;
   border-radius: 8px;
   background-color: #F5F5F5;
 }
 
-.filterCheckbox__circle_checked {
+.filter-checkbox__circle_checked {
   background-color: #fff;
 }
 
