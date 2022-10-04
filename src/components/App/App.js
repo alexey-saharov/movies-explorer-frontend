@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="app">
       {/*<Main />*/}
-      <Movies />
-      {/*<SavedMovies />*/}
+      {/*<Movies />*/}
+      <SavedMovies />
       {/*<Register />*/}
       {/*<Login />*/}
       {/*<Profile />*/}

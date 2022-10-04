@@ -1,5 +1,6 @@
 .search-form {
   padding: 80px 10px 10px;
+  max-width: 100%;
   background-color: #202020;
 }
 @media screen and (min-width: 540px) {

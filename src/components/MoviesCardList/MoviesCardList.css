@@ -1,5 +1,6 @@
 .movies-card-list {
   padding: 40px 10px 10px;
+  max-width: 100%;
   background-color: #202020;
 }
 @media screen and (min-width: 768px) {
@@ -35,26 +36,5 @@
     max-width: 1140px;
     gap: 38px 20px;
     grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.movies-card-list__more {
-  padding: 50px 40px 80px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.movies-card-list__button {
-  width: 240px;
-  height: 36px;
-  border-radius: 5px;
-  border: 1px solid rgb(66, 66, 66);
-  color: #fff;
-  background-color: transparent;
-}
-@media screen and (min-width: 768px) {
-  .movies-card-list__button {
-    width: 320px;
   }
 }
