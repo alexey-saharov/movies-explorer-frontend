@@ -13,7 +13,6 @@ function MoviesCardList() {
         <li className="moviesCardList__item"><MoviesCard /></li>
         <li className="moviesCardList__item"><MoviesCard /></li>
       </ul>
-
     </section>
   );
 }

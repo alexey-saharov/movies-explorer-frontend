@@ -4,6 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
+import MoviesMore from "../MoviesMore/MoviesMore";
 
 function Movies() {
 
@@ -21,6 +22,7 @@ function Movies() {
       <SearchForm onSearchMovie={handleSearchMovie} />
       {/*<Preloader />*/}
       <MoviesCardList />
+      <MoviesMore />
       <Footer />
     </>
   );
