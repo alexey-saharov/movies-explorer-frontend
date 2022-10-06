@@ -18,8 +18,7 @@ function SavedMovies() {
       <Header />
       <SearchForm onSearchMovie={handleSearchMovie} />
       {/*<Preloader />*/}
-      <MoviesCardList />
-      <div className="saved-movies__empty-space"></div>
+      <MoviesCardList parent={'SavedMovies'} />
       <Footer />
     </>
   );

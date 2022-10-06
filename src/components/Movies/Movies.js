@@ -3,7 +3,6 @@ import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import MoviesMore from '../MoviesMore/MoviesMore';
 import Footer from '../Footer/Footer';
 
 function Movies() {
@@ -19,8 +18,7 @@ function Movies() {
       <Header />
       <SearchForm onSearchMovie={handleSearchMovie} />
       {/*<Preloader />*/}
-      <MoviesCardList />
-      <MoviesMore />
+      <MoviesCardList parent={'Movies'}/>
       <Footer />
     </>
   );

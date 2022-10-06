@@ -1,24 +1,53 @@
 .movies-card-list {
-  padding: 40px 10px 10px;
+  padding: 0 10px;
   max-width: 100%;
-  min-height: calc(100vh - 844px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #202020;
 }
 @media screen and (min-width: 768px) {
   .movies-card-list {
-    padding: 70px 30px 10px;
-    min-height: calc(100vh - 791px);
+    padding: 0 30px;
   }
 }
 @media screen and (min-width: 1280px) {
   .movies-card-list {
-    padding: 70px 70px 10px;
-    min-height: calc(100vh - 745px);
+    padding: 0 70px;
+  }
+}
+
+.movies-card-list__min-height-movies {
+  min-height: calc(100vh - 651px);
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__min-height-movies {
+    min-height: calc(100vh - 569px);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movies-card-list__min-height-movies {
+    min-height: calc(100vh - 519px);
+  }
+}
+
+.movies-card-list__min-height-saved-movies {
+  padding-bottom: 140px;
+  min-height: calc(100vh - 791px);
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__min-height-saved-movies {
+    min-height: calc(100vh - 709px);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movies-card-list__min-height-saved-movies {
+    min-height: calc(100vh - 659px);
   }
 }
 
 .movies-card-list__items {
-  margin: 0 auto;
+  margin: 0;
   padding-left: 0;
   max-width: 300px;
   display: grid;
@@ -39,5 +68,37 @@
     max-width: 1140px;
     gap: 38px 20px;
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.movies-card-list__nothing-found {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #8B8B8B;
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__nothing-found {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movies-card-list__nothing-found {
+    font-size: 18px;
+  }
+}
+
+.movies-card-list__button {
+  margin: 50px 0 80px;
+  width: 240px;
+  height: 36px;
+  border-radius: 5px;
+  border: 1px solid rgb(66, 66, 66);
+  color: #fff;
+  background-color: transparent;
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__button {
+    width: 320px;
   }
 }

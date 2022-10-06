@@ -13,12 +13,12 @@ function App() {
   return (
     <div className="app">
       {/*<Main />*/}
-      {/*<Movies />*/}
+      <Movies />
       {/*<SavedMovies />*/}
       {/*<Register />*/}
       {/*<Login />*/}
       {/*<Profile />*/}
-      <Navigation />
+      {/*<Navigation />*/}
       {/*<PageNotFound />*/}
 
 
