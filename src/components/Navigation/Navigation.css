@@ -1,0 +1,118 @@
+.navigation {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  cursor: pointer;
+  /*visibility: hidden;*/
+  /*opacity: 0;*/
+  transition: visibility .4s, opacity .4s ease-in-out;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.navigation__button-close {
+  z-index: 300;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 21px;
+  right: 21px;
+  width: 16px;
+  height: 16px;
+  background-image: url('../../images/navigation-close-button.svg');
+  background-position: center;
+  background-size: 100%;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+@media screen and (min-width: 768px) {
+  .navigation__button-close {
+    top: 30px;
+    right: 30px;
+  }
+}
+
+.navigation__menu {
+  margin: 0;
+  padding: 144px 10px 46px;
+  /*height: 100vh;*/
+  /*min-height: 100vh;*/
+  box-sizing: border-box;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #202020;
+}
+@media screen and (min-width: 768px) {
+  .navigation__menu {
+    padding: 159px 90px 90px;
+    width: 520px;
+    position: fixed;
+    top: 0;
+    left: 100vw;
+    z-index: 200;
+    transition: left .5s;
+  }
+  .navigation__menu_active {
+    width: 520px;
+    position: fixed;
+    top: 0;
+    left: calc(100vw - 520px);
+    transition: left .5s;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .navigation__menu {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.navigation__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navigation__item {
+  margin-bottom: 24px;
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .navigation__item {
+    margin-bottom: 28px;
+  }
+}
+
+.navigation__item:last-of-type {
+  margin-bottom: calc(100vh - 330px);
+}
+@media screen and (min-width: 768px) {
+  .navigation__item:last-of-type {
+    margin-bottom: calc(100vh - 397px);
+  }
+}
+
+.navigation__link {
+  padding-bottom: 7px;
+  box-sizing: border-box;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  color: #fff;
+}
+@media screen and (min-width: 768px) {
+  .navigation__link {
+    padding-bottom: 4px;
+  }
+}
+
+.navigation__link_current {
+  border-bottom: 2px solid rgb(255, 255, 255);
+}

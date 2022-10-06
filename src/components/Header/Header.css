@@ -116,28 +116,3 @@
   margin-right: 0;
   font-weight: 400;
 }
-
-.header__menu-common-account {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.header__menu-common-account-text {
-  margin-right: 7px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 12px;
-  color: #fff;
-}
-
-.header__menu-common-account-icon {
-  display: block;
-  width: 26px;
-  height: 26px;
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-

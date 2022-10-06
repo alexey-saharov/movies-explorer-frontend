@@ -2,7 +2,7 @@ import './Header.css';
 import '../Link/Link.css';
 import logo from '../../images/header-logo.svg';
 import menuIcon from '../../images/header-menu-icon.svg';
-import accountIcon from '../../images/header-account-icon.svg';
+import Account from '../Account/Account';
 
 function Header({ parent }) {
   const typeMain = (parent === 'Main');
@@ -42,14 +42,7 @@ function Header({ parent }) {
                   Сохранённые фильмы
                 </a>
               </div>
-              <div className="header__menu-common-account link">
-                <a href="" className="header__menu-common-account-text">Аккаунт</a>
-                <a href="src/components/App#"
-                   aria-label="Аккаунт"
-                   className="header__menu-common-account-icon link"
-                   style = {{ backgroundImage: `url(${accountIcon})`}}
-                ></a>
-              </div>
+              <Account />
 
             </nav>
 
