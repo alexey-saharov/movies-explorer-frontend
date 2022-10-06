@@ -6,19 +6,20 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import Navigation from '../Navigation/Navigation';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
 
   return (
     <div className="app">
-      {/*<Main />*/}
+      <Main />
       {/*<Movies />*/}
       {/*<SavedMovies />*/}
       {/*<Register />*/}
       {/*<Login />*/}
-      <Profile />
+      {/*<Profile />*/}
       {/*<Navigation />*/}
-
+      {/*<PageNotFound />*/}
 
 
 

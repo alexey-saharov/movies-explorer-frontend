@@ -1,5 +1,7 @@
 .profile {
   padding: 70px 30px 40px;
+  min-height: calc(100vh - 124px);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +10,7 @@
 @media screen and (min-width: 768px) {
   .profile {
     padding: 236px 179px 269px;
+    min-height: calc(100vh - 114px);
   }
 }
 @media screen and (min-width: 1280px) {
@@ -57,12 +60,13 @@
 }
 @media screen and (min-width: 768px) {
   .profile__input_margin-bottom_long {
-    margin-bottom: 210px;
+    margin-bottom: max(210px, 100px);
   }
 }
 @media screen and (min-width: 1280px) {
   .profile__input_margin-bottom_long {
     margin-bottom: 220px;
+    /*margin-bottom: calc(100vh - 500px);*/
   }
 }
 

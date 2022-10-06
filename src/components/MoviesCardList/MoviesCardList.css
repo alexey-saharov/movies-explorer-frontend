@@ -1,16 +1,19 @@
 .movies-card-list {
   padding: 40px 10px 10px;
   max-width: 100%;
+  min-height: calc(100vh - 844px);
   background-color: #202020;
 }
 @media screen and (min-width: 768px) {
   .movies-card-list {
     padding: 70px 30px 10px;
+    min-height: calc(100vh - 791px);
   }
 }
 @media screen and (min-width: 1280px) {
   .movies-card-list {
     padding: 70px 70px 10px;
+    min-height: calc(100vh - 745px);
   }
 }
 

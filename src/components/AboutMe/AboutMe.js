@@ -9,7 +9,7 @@ function AboutMe() {
       <div className="about-me__line"></div>
 
       <div className="about-me__content">
-        <img className="about-me__photo" src={require('../../images/author-photo.jpg')} alt="Портрет автора сайта" />
+        <img className="about-me__photo" src={require('../../images/about-me-photo.jpg')} alt="Портрет автора сайта" />
 
         <div className="about-me__description">
           <div className="about-me__name">Алексей</div>

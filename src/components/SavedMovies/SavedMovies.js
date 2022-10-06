@@ -5,7 +5,7 @@ import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 
-function Movies() {
+function SavedMovies() {
 
   const handleSearchMovie = ({ movie }) => {
     // api.get()
@@ -25,4 +25,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default SavedMovies;
