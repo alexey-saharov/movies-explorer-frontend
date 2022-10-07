@@ -12,12 +12,14 @@ function Portfolio() {
           <a className="portfolio__item-type link"
              href="https://alexey-saharov.github.io/how-to-learn/"
              target="_blank"
+             rel="noreferrer"
           >
             Статичный сайт
           </a>
           <a className="portfolio__arrow link"
              href="https://alexey-saharov.github.io/how-to-learn/"
              target="_blank"
+             rel="noreferrer"
           >
             ↗
           </a>
@@ -29,12 +31,14 @@ function Portfolio() {
           <a className="portfolio__item-type link"
              href="https://alexey-saharov.github.io/russian-travel/"
              target="_blank"
+             rel="noreferrer"
           >
             Адаптивный сайт
           </a>
           <a className="portfolio__arrow link"
              href="https://alexey-saharov.github.io/russian-travel/"
              target="_blank"
+             rel="noreferrer"
           >
             ↗
           </a>
@@ -44,14 +48,16 @@ function Portfolio() {
 
         <li className="portfolio__item">
           <a className="portfolio__item-type link"
-            href="https://mesto.lexasaharov.nomoredomains.sbs/sign-in"
+            href="https://mesto.lexasaharov.nomoredomains.sbs/"
             target="_blank"
+             rel="noreferrer"
           >
             Одностраничное приложение
           </a>
           <a className="portfolio__arrow link"
-             href="https://mesto.lexasaharov.nomoredomains.sbs/sign-in"
+             href="https://mesto.lexasaharov.nomoredomains.sbs/"
              target="_blank"
+             rel="noreferrer"
           >
             ↗
           </a>

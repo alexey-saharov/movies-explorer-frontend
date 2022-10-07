@@ -36,8 +36,7 @@
 .navigation__menu {
   margin: 0;
   padding: 144px 10px 46px;
-  /*height: 100vh;*/
-  /*min-height: 100vh;*/
+  z-index: 200;
   box-sizing: border-box;
   cursor: default;
   display: flex;

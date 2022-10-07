@@ -14,7 +14,7 @@ function Profile() {
         <form action="" className="profile__form">
           <h2 className="profile__title">{`Привет, ${name}!`}</h2>
 
-          <div className="profile__input profile__input_margin-bottom_short">
+          <div className="profile__input">
             <p className="profile__input-title">Имя</p>
             <input
               type="text"
@@ -33,7 +33,7 @@ function Profile() {
 
           <div className="profile__line"></div>
 
-          <div className="profile__input profile__input_margin-bottom_long">
+          <div className="profile__input">
             <p className="profile__input-title">E-mail</p>
             <input
               type="text"

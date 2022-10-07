@@ -1,3 +1,4 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -12,50 +13,37 @@ function App() {
 
   return (
     <div className="app">
-      {/*<Main />*/}
-      <Movies />
-      {/*<SavedMovies />*/}
-      {/*<Register />*/}
-      {/*<Login />*/}
-      {/*<Profile />*/}
       {/*<Navigation />*/}
-      {/*<PageNotFound />*/}
 
+      <Routes>
+        <Route exact path="/signup" element={
+         <Register />
+        } />
 
+        <Route exact path="/signin" element={
+          <Login />
+        } />
 
-        {/*<Routes>*/}
-      {/*  <Route exact path="/sign-up" element={*/}
-      {/*    <Register onRegister={onRegister} />*/}
-      {/*  } />*/}
+        <Route exact path="/movies" element={
+          <Movies />
+        } />
 
-      {/*  <Route exact path="/sign-in" element={*/}
-      {/*    <Login onLogin={onLogin} />*/}
-      {/*  } />*/}
+        <Route exact path="/saved-movies" element={
+          <SavedMovies />
+        } />
 
-      {/*  <Route exact path="/movies" element={*/}
-      {/*    // отображается страница «Фильмы»;*/}
-      {/*  } />*/}
+        <Route exact path="/profile" element={
+          <Profile />
+        } />
 
-      {/*  <Route exact path="/saved-movies" element={*/}
-      {/*    // отображается страница «Сохранённые фильмы»;*/}
-      {/*  } />*/}
+        <Route exact path="/" element={
+          <Main />
+        } />
 
-      {/*  <Route exact path="/profile" element={*/}
-      {/*    // отображается страница с профилем пользователя;*/}
-      {/*  } />*/}
-
-      {/*  <Route exact path="/saved-movies" element={*/}
-      {/*    // отображается страница «Сохранённые фильмы»;*/}
-      {/*  } />*/}
-
-      {/*  <Route exact path="/" element={*/}
-      {/*    // отображается страница «О проекте»;*/}
-      {/*  } />*/}
-
-      {/*  <Route path="*" element={*/}
-      {/*    // показывать страницу 404*/}
-      {/*  } />*/}
-      {/*</Routes>*/}
+        <Route path="*" element={
+         <PageNotFound />
+        } />
+      </Routes>
 
     </div>
   );

@@ -11,8 +11,22 @@ function Footer() {
 
       <div className="footer__items">
         <div className="footer__links">
-          <a className="footer__link link" href="https://practicum.yandex.ru/" target="_blank">Яндекс.Практикум</a>
-          <a className="footer__link link" href="https://github.com/" target="_blank">Github</a>
+          <a
+            className="footer__link link"
+            href="https://practicum.yandex.ru/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Яндекс.Практикум
+          </a>
+          <a
+            className="footer__link link"
+            href="https://github.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </a>
         </div>
 
         <p className="footer__copyright">&#169;2022</p>

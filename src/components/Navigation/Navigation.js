@@ -11,13 +11,13 @@ function Navigation() {
         <ul className="navigation__items">
 
           <li className="navigation__item">
-            <a href="" className="navigation__link link">Главная</a>
+            <a href="/" className="navigation__link link">Главная</a>
           </li>
           <li className="navigation__item">
-            <a href="" className="navigation__link navigation__link_current link">Фильмы</a>
+            <a href="/movies" className="navigation__link navigation__link_current link">Фильмы</a>
           </li>
           <li className="navigation__item">
-            <a href="" className="navigation__link link">Сохранённые фильмы</a>
+            <a href="/saved-movies" className="navigation__link link">Сохранённые фильмы</a>
           </li>
         </ul>
 

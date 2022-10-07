@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './Register.css';
 import '../Link/Link.css';
-import logo from "../../images/header-logo.svg";
+import Logo from '../Logo/Logo';
 
 function Register() {
   const [name, setName] = useState('Виталий');
@@ -12,11 +12,9 @@ function Register() {
     <>
       <section className="register">
         <form action="" className="register__form">
-          <a href="src/components/App#"
-             aria-label="Логотип Movies-explorer"
-             className="header__logo link"
-             style = {{ backgroundImage: `url(${logo})`}}
-          ></a>
+          <div className="register__logo-container">
+            <Logo />
+          </div>
           <h2 className="register__title">Добро пожаловать!</h2>
 
           <p className="register__input-title">Имя</p>
@@ -64,7 +62,7 @@ function Register() {
 
           <button className="register__button link">Зарегистрироваться</button>
           <p className="register__registered-text">
-            Уже зарегистрированы? <a href="/sign-in" className="register__registered-text-link link">Войти</a>
+            Уже зарегистрированы? <a href="/signin" className="register__registered-text-link link">Войти</a>
           </p>
 
         </form>

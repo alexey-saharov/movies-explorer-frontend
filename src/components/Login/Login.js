@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './Login.css';
 import '../Link/Link.css';
-import logo from "../../images/header-logo.svg";
+import Logo from "../Logo/Logo";
 
 function Login() {
   const [email, setEmail] = useState('pochta@yandex.ru');
@@ -11,11 +11,9 @@ function Login() {
     <>
       <section className="login">
         <form action="" className="login__form">
-          <a href="src/components/App#"
-             aria-label="Логотип Movies-explorer"
-             className="header__logo link"
-             style = {{ backgroundImage: `url(${logo})`}}
-          ></a>
+          <div className="login__logo-container">
+            <Logo />
+          </div>
           <h2 className="login__title">Рады видеть!</h2>
 
           <p className="login__input-title">E-mail</p>
@@ -48,7 +46,7 @@ function Login() {
 
           <button className="login__button link">Войти</button>
           <p className="login__registered-text">
-            Ещё не зарегистрированы? <a href="/sign-in" className="login__registered-text-link link">Регистрация</a>
+            Ещё не зарегистрированы? <a href="/signup" className="login__registered-text-link link">Регистрация</a>
           </p>
 
         </form>
