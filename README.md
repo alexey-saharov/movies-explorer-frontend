@@ -1,5 +1,7 @@
 # movies-explorer-frontend
 
+макет Figma - https://disk.yandex.ru/d/ljEwnghP3s5LIA
+
 IP-адрес сервера - 84.252.142.45 \
 бэкенд - https://api.movies.lexasaharov.nomorepartiesxyz.ru \
 фронтенд - https://movies.lexasaharov.nomorepartiesxyz.ru
