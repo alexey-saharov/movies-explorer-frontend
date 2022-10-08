@@ -68,6 +68,9 @@
 .header__menu-common-icon {
   width: 40px;
   height: 43px;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 @media screen and (min-width: 768px) {
   .header__menu-common-icon {

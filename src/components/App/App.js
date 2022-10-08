@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
@@ -10,10 +11,23 @@ import Navigation from '../Navigation/Navigation';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
+  const [isNavMenuVisible, setNavMenuVisible] = useState(false);
+
+  function openNavMenu() {
+    setNavMenuVisible(true);
+  }
+
+  function closeNavMenu() {
+    setNavMenuVisible(false);
+  }
 
   return (
     <div className="app">
-      {/*<Navigation />*/}
+
+      <Navigation
+        isNavMenuVisible={isNavMenuVisible}
+        onCLose={closeNavMenu}
+      />
 
       <Routes>
         <Route exact path="/signup" element={
@@ -25,15 +39,15 @@ function App() {
         } />
 
         <Route exact path="/movies" element={
-          <Movies />
+            <Movies onNavMenuClick={openNavMenu} />
         } />
 
         <Route exact path="/saved-movies" element={
-          <SavedMovies />
+          <SavedMovies onNavMenuClick={openNavMenu} />
         } />
 
         <Route exact path="/profile" element={
-          <Profile />
+          <Profile onNavMenuClick={openNavMenu} />
         } />
 
         <Route exact path="/" element={

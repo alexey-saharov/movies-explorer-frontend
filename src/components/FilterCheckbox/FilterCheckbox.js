@@ -9,7 +9,7 @@ function FilterCheckbox() {
   };
 
   return (
-    <div className={`filter-checkbox ${isChecked && 'filter-checkbox_checked'}`} onClick={handleChange}>
+    <div className={`filter-checkbox ${isChecked && 'filter-checkbox_checked'} link`} onClick={handleChange}>
       <div className={`filter-checkbox__circle ${isChecked && 'filter-checkbox__circle_checked'}`}></div>
     </div>
   );

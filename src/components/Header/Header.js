@@ -4,7 +4,8 @@ import menuIcon from '../../images/header-menu-icon.svg';
 import Logo from '../Logo/Logo';
 import Account from '../Account/Account';
 
-function Header({ parent }) {
+function Header({ parent, onNavMenuClick }) {
+
   const typeMain = (parent === 'Main');
 
   return (
@@ -17,7 +18,7 @@ function Header({ parent }) {
         ?
           <nav className="header__menu-main">
             <a href="/signup" className="header__menu-main-item link">Регистрация</a>
-            <a href="src/components/App#"
+            <a href="/signin"
                className="header__menu-main-item header__menu-main-item_button link"
             >
               Войти
@@ -42,12 +43,13 @@ function Header({ parent }) {
 
             </nav>
 
-            <a href="/"
+            <button
                aria-label="Иконка меню"
                className="header__menu-common-icon link"
                style = {{ backgroundImage: `url(${menuIcon})`}}
+               onClick={onNavMenuClick}
             >
-            </a>
+            </button>
           </>
         }
       </div>

@@ -33,7 +33,7 @@ function SearchForm(props) {
             onChange={handleChangeMovie}
           />
 
-          <button type="submit" aria-label="Найти" className="search-form__button-submit">Найти</button>
+          <button type="submit" aria-label="Найти" className="search-form__button-submit link">Найти</button>
 
         </div>
         <div className="search-form__search-filter">

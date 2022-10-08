@@ -27,7 +27,7 @@ function MoviesCardList({ parent }) {
       {/*}*/}
 
       {isTypeMovies &&
-        <button aria-label="Еще" className="movies-card-list__button">Ещё</button>
+        <button aria-label="Еще" className="movies-card-list__button link">Ещё</button>
       }
     </section>
   );

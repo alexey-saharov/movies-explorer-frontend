@@ -20,7 +20,7 @@ function MoviesCard() {
         <h3 className="movies-card__title">{title}</h3>
         <button
           aria-label="добавить в избранное"
-          className="movies-card__like"
+          className="movies-card__like link"
           onClick={handleLikeClick}
           style = {{ backgroundImage: `url(${(isLiked) ? moviesCardIsLiked : moviesCardLike})`}}
         >

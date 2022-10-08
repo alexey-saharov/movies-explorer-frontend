@@ -2,11 +2,15 @@
   position: fixed;
   inset: 0;
   z-index: 100;
-  cursor: pointer;
-  /*visibility: hidden;*/
-  /*opacity: 0;*/
-  transition: visibility .4s, opacity .4s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
   background-color: rgba(0, 0, 0, .3);
+  transition: visibility .4s, opacity .4s ease-in-out;
+}
+
+.navigation_active {
+  visibility: visible;
+  opacity: 1;
 }
 
 .navigation__button-close {
@@ -52,14 +56,13 @@
     top: 0;
     left: 100vw;
     z-index: 200;
-    transition: left .5s;
+    transition: left .4s;
   }
   .navigation__menu_active {
     width: 520px;
     position: fixed;
     top: 0;
     left: calc(100vw - 520px);
-    transition: left .5s;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -80,12 +83,17 @@
 
 .navigation__item {
   margin-bottom: 24px;
-  padding: 0;
+  padding: 0 0 5px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
 }
 @media screen and (min-width: 768px) {
   .navigation__item {
     margin-bottom: 28px;
   }
+}
+
+.navigation__item:hover {
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
 
 .navigation__item:last-of-type {
@@ -110,8 +118,4 @@
   .navigation__link {
     padding-bottom: 4px;
   }
-}
-
-.navigation__link_current {
-  border-bottom: 2px solid rgb(255, 255, 255);
 }

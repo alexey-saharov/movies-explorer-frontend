@@ -4,19 +4,15 @@ import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 
-function Movies() {
+function Movies({ onNavMenuClick }) {
 
-  const handleSearchMovie = ({ movie }) => {
-    // api.get()
-    //   .then()
-    //   .catch();
-  };
+  const handleSearchMovie = () => {};
 
   return (
     <>
-      <Header />
+      <Header onNavMenuClick={onNavMenuClick} />
       <SearchForm onSearchMovie={handleSearchMovie} />
-      {/*<Preloader />*/}
+      <Preloader isVisible={false} />
       <MoviesCardList parent={'Movies'}/>
       <Footer />
     </>

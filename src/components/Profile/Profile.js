@@ -3,13 +3,13 @@ import Header from "../Header/Header";
 import './Profile.css';
 import '../Link/Link.css';
 
-function Profile() {
+function Profile({ onNavMenuClick }) {
   const [name, setName] = useState('Виталий');
   const [email, setEmail] = useState('pochta@yandex.ru');
 
   return (
     <>
-      <Header />
+      <Header onNavMenuClick={onNavMenuClick} />
       <section className="profile">
         <form action="" className="profile__form">
           <h2 className="profile__title">{`Привет, ${name}!`}</h2>
