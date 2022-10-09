@@ -25,8 +25,6 @@ function Portfolio() {
           </a>
         </li>
 
-        <div className="portfolio__line"></div>
-
         <li className="portfolio__item">
           <a className="portfolio__item-type link"
              href="https://alexey-saharov.github.io/russian-travel/"
@@ -43,8 +41,6 @@ function Portfolio() {
             ↗
           </a>
         </li>
-
-        <div className="portfolio__line"></div>
 
         <li className="portfolio__item">
           <a className="portfolio__item-type link"
