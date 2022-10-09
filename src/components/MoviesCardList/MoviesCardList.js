@@ -8,16 +8,18 @@ function MoviesCardList({ parent }) {
     ? 'movies-card-list__min-height-movies'
     : 'movies-card-list__min-height-saved-movies';
 
+  const mySavedMovie = !isTypeMovies;
+
   return (
 
     <section className={`movies-card-list ${classNameMinHeight}`}>
       <ul className="movies-card-list__items">
-        <li className="movies-card-list__item"><MoviesCard /></li>
-        <li className="movies-card-list__item"><MoviesCard /></li>
-        <li className="movies-card-list__item"><MoviesCard /></li>
-        <li className="movies-card-list__item"><MoviesCard /></li>
-        <li className="movies-card-list__item"><MoviesCard /></li>
-        <li className="movies-card-list__item"><MoviesCard /></li>
+        <li className="movies-card-list__item"><MoviesCard isLiked={true} mySavedMovie={mySavedMovie} /></li>
+        <li className="movies-card-list__item"><MoviesCard isLiked={false} mySavedMovie={mySavedMovie} /></li>
+        <li className="movies-card-list__item"><MoviesCard isLiked={true} mySavedMovie={mySavedMovie} /></li>
+        <li className="movies-card-list__item"><MoviesCard isLiked={true} mySavedMovie={mySavedMovie} /></li>
+        <li className="movies-card-list__item"><MoviesCard isLiked={false} mySavedMovie={mySavedMovie} /></li>
+        <li className="movies-card-list__item"><MoviesCard isLiked={false} mySavedMovie={mySavedMovie} /></li>
       </ul>
 
       {/*{isTypeMovies &&*/}
@@ -27,7 +29,9 @@ function MoviesCardList({ parent }) {
       {/*}*/}
 
       {isTypeMovies &&
-        <button aria-label="Еще" className="movies-card-list__button link">Ещё</button>
+        <button type="button" aria-label="Еще" className="movies-card-list__button link">
+          Ещё
+        </button>
       }
     </section>
   );

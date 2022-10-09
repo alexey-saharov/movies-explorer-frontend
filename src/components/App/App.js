@@ -39,7 +39,7 @@ function App() {
         } />
 
         <Route exact path="/movies" element={
-            <Movies onNavMenuClick={openNavMenu} />
+          <Movies onNavMenuClick={openNavMenu} />
         } />
 
         <Route exact path="/saved-movies" element={
@@ -55,7 +55,7 @@ function App() {
         } />
 
         <Route path="*" element={
-         <PageNotFound />
+          <PageNotFound />
         } />
       </Routes>
 

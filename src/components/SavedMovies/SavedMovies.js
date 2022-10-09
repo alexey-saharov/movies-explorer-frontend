@@ -11,9 +11,11 @@ function SavedMovies({ onNavMenuClick }) {
   return (
     <>
       <Header onNavMenuClick={onNavMenuClick} />
-      <SearchForm onSearchMovie={handleSearchMovie} />
-      <Preloader isVisible={false} />
-      <MoviesCardList parent={'SavedMovies'} />
+      <main>
+        <SearchForm onSearchMovie={handleSearchMovie} />
+        <Preloader isVisible={false} />
+        <MoviesCardList parent={'SavedMovies'} />
+      </main>
       <Footer />
     </>
   );

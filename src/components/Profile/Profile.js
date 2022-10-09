@@ -50,7 +50,7 @@ function Profile({ onNavMenuClick }) {
             />
           </div>
 
-          <button className="profile__edit-button link" >Редактировать</button>
+          <button type="button" className="profile__edit-button link" >Редактировать</button>
           <button className="profile__sign-out-button link" >Выйти из аккаунта</button>
         </form>
       </section>

@@ -26,7 +26,6 @@ function Login() {
             placeholder="Почта"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
-            readOnly
           />
 
           <p className="login__input-title">Пароль</p>
@@ -39,12 +38,11 @@ function Login() {
             placeholder=""
             value={password}
             onChange={({ target }) => setPassword(target.value)}
-            readOnly
           />
 
           <span id="name-error" className="login__error">Что-то пошло не так...</span>
 
-          <button className="login__button link">Войти</button>
+          <button type="submit" className="login__button link">Войти</button>
           <p className="login__registered-text">
             Ещё не зарегистрированы? <a href="/signup" className="login__registered-text-link link">Регистрация</a>
           </p>

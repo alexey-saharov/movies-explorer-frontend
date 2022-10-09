@@ -29,7 +29,6 @@ function Register() {
             placeholder="Имя"
             value={name}
             onChange={({ target }) => setName(target.value)}
-            readOnly
           />
 
           <p className="register__input-title">E-mail</p>
@@ -42,7 +41,6 @@ function Register() {
             placeholder="Почта"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
-            readOnly
           />
 
           <p className="register__input-title">Пароль</p>
@@ -55,12 +53,11 @@ function Register() {
             placeholder=""
             value={password}
             onChange={({ target }) => setPassword(target.value)}
-            readOnly
           />
 
           <span id="name-error" className="register__error">Что-то пошло не так...</span>
 
-          <button className="register__button link">Зарегистрироваться</button>
+          <button type="submit" className="register__button link">Зарегистрироваться</button>
           <p className="register__registered-text">
             Уже зарегистрированы? <a href="/signin" className="register__registered-text-link link">Войти</a>
           </p>

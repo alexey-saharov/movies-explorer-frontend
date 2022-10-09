@@ -44,10 +44,11 @@ function Header({ parent, onNavMenuClick }) {
             </nav>
 
             <button
-               aria-label="Иконка меню"
-               className="header__menu-common-icon link"
-               style = {{ backgroundImage: `url(${menuIcon})`}}
-               onClick={onNavMenuClick}
+              type="button"
+              aria-label="Иконка меню"
+              className="header__menu-common-icon link"
+              style = {{ backgroundImage: `url(${menuIcon})`}}
+              onClick={onNavMenuClick}
             >
             </button>
           </>

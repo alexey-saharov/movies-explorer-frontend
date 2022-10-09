@@ -7,7 +7,7 @@ function Portfolio() {
 
       <h2 className="portfolio__title">Портфолио</h2>
 
-      <div className="portfolio__items">
+      <ul className="portfolio__items">
         <li className="portfolio__item">
           <a className="portfolio__item-type link"
              href="https://alexey-saharov.github.io/how-to-learn/"
@@ -62,7 +62,7 @@ function Portfolio() {
             ↗
           </a>
         </li>
-      </div>
+      </ul>
 
     </section>
   );
