@@ -1,0 +1,105 @@
+.movies-card-list {
+  padding: 0 10px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #202020;
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list {
+    padding: 0 30px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movies-card-list {
+    padding: 0 70px;
+  }
+}
+
+.movies-card-list__min-height-movies {
+  min-height: calc(100vh - 691px);
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__min-height-movies {
+    min-height: calc(100vh - 639px);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movies-card-list__min-height-movies {
+    min-height: calc(100vh - 589px);
+  }
+}
+
+.movies-card-list__min-height-saved-movies {
+  padding-bottom: 140px;
+  min-height: calc(100vh - 831px);
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__min-height-saved-movies {
+    min-height: calc(100vh - 779px);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movies-card-list__min-height-saved-movies {
+    min-height: calc(100vh - 729px);
+  }
+}
+
+.movies-card-list__items {
+  margin: 0;
+  padding-bottom: 10px;
+  padding-left: 0;
+  max-width: 300px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-row-gap: 33px;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__items {
+    max-width: 708px;
+    gap: 30px 30px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movies-card-list__items {
+    max-width: 1140px;
+    gap: 38px 20px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.movies-card-list__nothing-found {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #8B8B8B;
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__nothing-found {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .movies-card-list__nothing-found {
+    font-size: 18px;
+  }
+}
+
+.movies-card-list__button {
+  margin: 50px 0 80px;
+  width: 240px;
+  height: 36px;
+  border-radius: 5px;
+  border: 1px solid rgb(66, 66, 66);
+  color: #fff;
+  background-color: transparent;
+}
+@media screen and (min-width: 768px) {
+  .movies-card-list__button {
+    width: 320px;
+  }
+}

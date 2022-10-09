@@ -1,0 +1,30 @@
+.filter-checkbox {
+  margin-right: 14px;
+  padding-left: 2px;
+  box-sizing: border-box;
+  width: 36px;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
+  background-color: #C0C0C0;
+  transition: padding-left .14s ease-in, background-color .14s ease-in;
+}
+
+.filter-checkbox_checked {
+  padding-left: 18px;
+  background-color: #2BE080;
+}
+
+.filter-checkbox__circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background-color: #F5F5F5;
+}
+
+.filter-checkbox__circle_checked {
+  background-color: #fff;
+}
+
