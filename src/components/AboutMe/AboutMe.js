@@ -20,7 +20,12 @@ function AboutMe() {
             «Газпром недра». После того, как прошёл курс по веб-разработке,
             занимаюсь проектами в компании и фриланс-заказами.
           </div>
-          <a className="about-me__githubLink link" href="https://github.com/alexey-saharov" target="_blank">
+          <a
+            className="about-me__githubLink link"
+            href="https://github.com/alexey-saharov"
+            target="_blank"
+            rel="noreferrer"
+          >
             Github
           </a>
         </div>
