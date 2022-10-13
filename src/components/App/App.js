@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
@@ -9,9 +9,11 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import Navigation from '../Navigation/Navigation';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import { moviesApi } from '../../utils/MoviesApi.js';
 
 function App() {
   const [isNavMenuVisible, setNavMenuVisible] = useState(false);
+//  const [loggedIn, setLoggedIn] = useState(false);
 
   function openNavMenu() {
     setNavMenuVisible(true);
@@ -20,6 +22,14 @@ function App() {
   function closeNavMenu() {
     setNavMenuVisible(false);
   }
+  //
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     moviesApi.getMovies()
+  //       .then(movies => setMovies(movies))
+  //       .catch(err => console.log(err));    // убрать console.log
+  //   }
+  // }, [loggedIn]);
 
   return (
     <div className="app">

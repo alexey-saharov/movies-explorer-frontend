@@ -1,6 +1,8 @@
 .movies-card__img {
+  aspect-ratio: 16 / 9;
   width: 100%;
   margin-bottom: 6px;
+  object-fit: cover;
 }
 
 .movies-card__description {

@@ -1,24 +1,42 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './SearchForm.css';
 import searchFormIcon from '../../images/searchform-icon.svg';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm(props) {
-  const [movie, setMovie] = useState('');
+function SearchForm({ onSearch, onSearchStringChange, isFilterChecked, onFilterToggle }) {
+  const [searchString, setSearchStringMovie] = useState('');
+  const [searchMovieError, setSearchMovieError] = useState('');
 
-  function handleChangeMovie(e) {
-    setMovie(e.target.value);
+
+  function handleValidation() {
+    if (!searchString) {
+      setSearchMovieError('Нужно ввести ключевое слово');
+      return false;
+    }
+    return true;
   }
+
+  React.useEffect(() => {
+    setSearchMovieError('');
+  }, [searchString]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onSearchMovie({  movie });
+    if (handleValidation()) {
+      onSearch({ searchString })
+    }
   }
+
+  const handleInputChange = ({ target }) => {
+    setSearchStringMovie(target.value);
+    onSearchStringChange();
+  }
+
 
   return (
     <section className="search-form">
 
-      <form action="src/components/App#" className="search-form__form" onSubmit={handleSubmit}>
+      <form action="src/components/App#" className="search-form__form" noValidate onSubmit={handleSubmit}>
         <div className="search-form__search-field">
           <div className="search-form__icon" style = {{ backgroundImage: `url(${searchFormIcon})`}}></div>
 
@@ -29,16 +47,22 @@ function SearchForm(props) {
             className="search-form__input"
             required
             placeholder="Фильм"
-            value={movie}
-            onChange={handleChangeMovie}
+            value={searchString}
+            onChange={handleInputChange}
           />
 
           <button type="submit" aria-label="Найти" className="search-form__button-submit link">Найти</button>
 
+          <span id="movie-error" className={`search-form__error ${searchMovieError && 'search-form__error_visible'}`}>
+            {searchMovieError}
+          </span>
         </div>
         <div className="search-form__search-filter">
           <div className="search-form__vertical-line"></div>
-          <FilterCheckbox />
+          <FilterCheckbox
+            isFilterChecked={isFilterChecked}
+            onFilterToggle={onFilterToggle}
+          />
           <p className="search-form__search-filter-text">Короткометражки</p>
         </div>
 

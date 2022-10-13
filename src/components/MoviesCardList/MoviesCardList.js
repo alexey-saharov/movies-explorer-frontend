@@ -1,7 +1,7 @@
 import './MoviesCardList.css';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ parent }) {
+function MoviesCardList({ parent, movies, isSearchResultMessageActive }) {
 
   const isTypeMovies =  (parent === 'Movies');
   const classNameMinHeight = (isTypeMovies)
@@ -13,26 +13,38 @@ function MoviesCardList({ parent }) {
   return (
 
     <section className={`movies-card-list ${classNameMinHeight}`}>
-      <ul className="movies-card-list__items">
-        <li className="movies-card-list__item"><MoviesCard isLiked={true} mySavedMovie={mySavedMovie} /></li>
-        <li className="movies-card-list__item"><MoviesCard isLiked={false} mySavedMovie={mySavedMovie} /></li>
-        <li className="movies-card-list__item"><MoviesCard isLiked={true} mySavedMovie={mySavedMovie} /></li>
-        <li className="movies-card-list__item"><MoviesCard isLiked={true} mySavedMovie={mySavedMovie} /></li>
-        <li className="movies-card-list__item"><MoviesCard isLiked={false} mySavedMovie={mySavedMovie} /></li>
-        <li className="movies-card-list__item"><MoviesCard isLiked={false} mySavedMovie={mySavedMovie} /></li>
+
+      <ul className={`movies-card-list__items ${(movies.length > 0) && 'movies-card-list__items_active'}`}>
+        {movies.slice(0).map((movie) => (
+          <li key={movie._id} className="movies-card-list__item">
+            <MoviesCard
+              movie={movie}
+              isLiked={false}
+              mySavedMovie={mySavedMovie}
+            />
+          </li>
+        ))}
       </ul>
 
-      {/*{isTypeMovies &&*/}
-      {/*  <p className="movies-card-list__nothing-found">*/}
-      {/*    По вашему запросу ничего не найдено*/}
-      {/*  </p>*/}
-      {/*}*/}
+      <p className={`movies-card-list__nothing-found
+        ${
+          isTypeMovies &&
+          isSearchResultMessageActive &&
+          (movies.length === 0) &&
+          'movies-card-list__nothing-found_active'}`
+        }
+      >
+        Ничего не найдено
+      </p>
 
-      {isTypeMovies &&
-        <button type="button" aria-label="Еще" className="movies-card-list__button link">
-          Ещё
-        </button>
-      }
+      <button
+        type="button"
+        aria-label="Еще"
+        className={`movies-card-list__button link
+          ${isTypeMovies && (movies.length > 0) && 'movies-card-list__button_active'}`}
+      >
+        Ещё
+      </button>
     </section>
   );
 }
