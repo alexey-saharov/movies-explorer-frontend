@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
@@ -9,10 +9,13 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import Navigation from '../Navigation/Navigation';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import { moviesApi } from '../../utils/MoviesApi.js';
+import ErrorPopup from "../ErrorPopup/ErrorPopup";
 
 function App() {
   const [isNavMenuVisible, setNavMenuVisible] = useState(false);
+  const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
+  const [errorPopupMessage, setErrorPopupMessage] = useState('');
+
 //  const [loggedIn, setLoggedIn] = useState(false);
 
   function openNavMenu() {
@@ -22,14 +25,15 @@ function App() {
   function closeNavMenu() {
     setNavMenuVisible(false);
   }
-  //
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     moviesApi.getMovies()
-  //       .then(movies => setMovies(movies))
-  //       .catch(err => console.log(err));    // убрать console.log
-  //   }
-  // }, [loggedIn]);
+
+  function showError( message ) {
+    setErrorPopupMessage(message);
+    setErrorPopupOpen(true);
+  }
+
+  function closeErrorPopup() {
+    setErrorPopupOpen(false);
+  }
 
   return (
     <div className="app">
@@ -49,7 +53,7 @@ function App() {
         } />
 
         <Route exact path="/movies" element={
-          <Movies onNavMenuClick={openNavMenu} />
+          <Movies onNavMenuClick={openNavMenu} onError={showError} />
         } />
 
         <Route exact path="/saved-movies" element={
@@ -68,6 +72,8 @@ function App() {
           <PageNotFound />
         } />
       </Routes>
+
+      <ErrorPopup isOpen={isErrorPopupOpen} message={errorPopupMessage} onClose={closeErrorPopup} />
 
     </div>
   );

@@ -3,10 +3,8 @@ import './SearchForm.css';
 import searchFormIcon from '../../images/searchform-icon.svg';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, onSearchStringChange, isFilterChecked, onFilterToggle }) {
-  const [searchString, setSearchStringMovie] = useState('');
+function SearchForm({ searchString, setSearchString, onSearch, onSearchStringChange, isSearchShortMovie, onFilterToggle }) {
   const [searchMovieError, setSearchMovieError] = useState('');
-
 
   function handleValidation() {
     if (!searchString) {
@@ -28,10 +26,9 @@ function SearchForm({ onSearch, onSearchStringChange, isFilterChecked, onFilterT
   }
 
   const handleInputChange = ({ target }) => {
-    setSearchStringMovie(target.value);
+    setSearchString(target.value);
     onSearchStringChange();
   }
-
 
   return (
     <section className="search-form">
@@ -60,12 +57,11 @@ function SearchForm({ onSearch, onSearchStringChange, isFilterChecked, onFilterT
         <div className="search-form__search-filter">
           <div className="search-form__vertical-line"></div>
           <FilterCheckbox
-            isFilterChecked={isFilterChecked}
+            isFilterChecked={isSearchShortMovie}
             onFilterToggle={onFilterToggle}
           />
           <p className="search-form__search-filter-text">Короткометражки</p>
         </div>
-
 
       </form>
 

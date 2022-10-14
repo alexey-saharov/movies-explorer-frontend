@@ -1,7 +1,7 @@
 import './MoviesCardList.css';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ parent, movies, isSearchResultMessageActive }) {
+function MoviesCardList({ parent, movies, isSearchResultMessageActive, isMoreButtonVisible, onAddMovies }) {
 
   const isTypeMovies =  (parent === 'Movies');
   const classNameMinHeight = (isTypeMovies)
@@ -16,7 +16,7 @@ function MoviesCardList({ parent, movies, isSearchResultMessageActive }) {
 
       <ul className={`movies-card-list__items ${(movies.length > 0) && 'movies-card-list__items_active'}`}>
         {movies.slice(0).map((movie) => (
-          <li key={movie._id} className="movies-card-list__item">
+          <li key={movie.id} className="movies-card-list__item">
             <MoviesCard
               movie={movie}
               isLiked={false}
@@ -40,8 +40,8 @@ function MoviesCardList({ parent, movies, isSearchResultMessageActive }) {
       <button
         type="button"
         aria-label="Еще"
-        className={`movies-card-list__button link
-          ${isTypeMovies && (movies.length > 0) && 'movies-card-list__button_active'}`}
+        className={`movies-card-list__button link ${isMoreButtonVisible && 'movies-card-list__button_active'}`}
+        onClick={onAddMovies}
       >
         Ещё
       </button>
