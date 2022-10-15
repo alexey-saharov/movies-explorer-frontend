@@ -79,7 +79,7 @@
   background-color: #2F2F2F;
 }
 
-.register__input_error {
+.register__input_invalid {
   color: #EE3465;
 }
 
@@ -88,7 +88,7 @@
   background-color: #f2f2f2;
 }
 
-.register__error {
+.register__input-error {
   margin-bottom: 4px;
   display: block;
   height: 12px;
@@ -100,13 +100,25 @@
   color: #EE3465;
 }
 
-.register__error:last-of-type {
-  margin-bottom: 162px;
+.register__input-error:last-of-type {
+  margin-bottom: 113px;
 }
 @media screen and (min-width: 768px) {
-  .register__error:last-of-type {
-    margin-bottom: 74px;
+  .register__input-error:last-of-type {
+    margin-bottom: 25px;
   }
+}
+
+.register__error {
+  margin: 0 auto 20px;
+  display: block;
+  height: 30px;
+  width: 100%;
+  text-align: left;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #EE3465;
 }
 
 .register__button {

@@ -4,7 +4,11 @@ const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Ошибка: ${res.status}`);
+
+  return res.text().then(text => {
+    return Promise.reject(`Ошибка: ${JSON.parse(text).message}`);
+  });
+
 }
 
 export const register = ( name, email, password ) => {
@@ -17,4 +21,23 @@ export const register = ( name, email, password ) => {
     body: JSON.stringify({ name, email, password })
   })
     .then(handleResponse)
+};
+
+export const authorize = (email, password) => {
+  return fetch(`${MAIN_URL}/signin`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify({ email, password })
+  })
+    .then(handleResponse)
+    .then((data) => {
+      if (data.token) {
+        localStorage.setItem('jwt', data.token);
+        return data;
+      }
+    })
 };

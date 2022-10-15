@@ -16,6 +16,9 @@ function App() {
   const [isNavMenuVisible, setNavMenuVisible] = useState(false);
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorPopupMessage, setErrorPopupMessage] = useState('');
+  const [registerError, setRegisterError] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
   const history = useNavigate();
 
 //  const [loggedIn, setLoggedIn] = useState(false);
@@ -37,22 +40,37 @@ function App() {
     setErrorPopupOpen(false);
   }
 
-  const handleRegister = ({ name, email, password}) => {
+  const handleRegister = ({ name, email, password }) => {
     return MainApi.register(name, email, password)
-      .then((res) => {
-        // if (res.error) {
-        //   throw new Error(res.error);
-        // } else {
-        //   return res;
-        // }
-      })
+      .then(res => { return res })
       .then(() => {
-        //  пользователь сразу авторизуется
+        //  todo пользователь сразу авторизуется
+        setRegisterError('');
         history('/movies');
       })
       .catch((err) => {
-        // handleRegError();
-        // console.log(err.message);
+        setRegisterError(err);
+      });
+  }
+
+  const handleLogin = ({ email, password }) => {
+    return MainApi.authorize(email, password)
+      .then((res) => {
+        if (res) {
+          if (res.token) {
+            localStorage.setItem('jwt', res.token);
+            setLoggedIn(true);
+          }
+        } else {
+          throw new Error('Что-то пошло не так!');
+        }
+      })
+      .then(() => {
+        setLoginError('');
+        history('/movies');
+      })
+      .catch((err) => {
+        setLoginError(err);
       });
   }
 
@@ -66,11 +84,11 @@ function App() {
 
       <Routes>
         <Route exact path="/signup" element={
-         <Register onRegister={handleRegister} />
+         <Register onRegister={handleRegister} registerError={registerError} />
         } />
 
         <Route exact path="/signin" element={
-          <Login />
+          <Login onLogin={handleLogin} loginError={loginError} />
         } />
 
         <Route exact path="/movies" element={

@@ -1,16 +1,22 @@
+import { useEffect } from "react";
 import './Register.css';
 import '../Link/Link.css';
 import Logo from '../Logo/Logo';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-function Register({ onRegister }) {
+
+
+function Register({ onRegister, registerError }) {
 
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
+  useEffect(() => {
+    resetForm();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onRegister(values);
-    resetForm();
   }
 
   return (
@@ -35,33 +41,36 @@ function Register({ onRegister }) {
             value={values.name}
             onChange={handleChange}
           />
-          <span id="name-error" className="register__error">{errors.name}</span>
+          <span id="name-error" className="register__input-error">{errors.name}</span>
+          {/*todo ошибки не влазят в экран*/}
 
           <p className="register__input-title">E-mail</p>
           <input
             type="text"
             id="email"
             name="email"
-            className={`register__input ${errors.email && ' register__input_error'}`}
+            className={`register__input ${errors.email && ' register__input_invalid'}`}
             required
             placeholder="Почта"
             value={values.email}
             onChange={handleChange}
           />
-          <span id="name-error" className="register__error">{errors.email}</span>
+          <span id="name-error" className="register__input-error">{errors.email}</span>
 
           <p className="register__input-title">Пароль</p>
           <input
             type="text"
             id="password"
             name="password"
-            className={`register__input ${errors.password && ' register__input_error'}`}
+            className={`register__input ${errors.password && ' register__input_invalid'}`}
             required
             placeholder=""
             value={values.password}
             onChange={handleChange}
           />
-          <span id="name-error" className="register__error">{errors.password}</span>
+          <span id="name-error" className="register__input-error">{errors.password}</span>
+
+          <p className="register__error">{registerError}</p>
 
           <button
             type="submit"
