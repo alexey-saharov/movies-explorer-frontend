@@ -6,6 +6,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm({ searchString, setSearchString, onSearch, onSearchStringChange, isSearchShortMovie, onFilterToggle }) {
   const [searchMovieError, setSearchMovieError] = useState('');
 
+
   function handleValidation() {
     if (!searchString) {
       setSearchMovieError('Нужно ввести ключевое слово');
