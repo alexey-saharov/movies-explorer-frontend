@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -10,11 +10,13 @@ import Profile from '../Profile/Profile';
 import Navigation from '../Navigation/Navigation';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ErrorPopup from "../ErrorPopup/ErrorPopup";
+import * as MainApi from "../../utils/MainApi";
 
 function App() {
   const [isNavMenuVisible, setNavMenuVisible] = useState(false);
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorPopupMessage, setErrorPopupMessage] = useState('');
+  const history = useNavigate();
 
 //  const [loggedIn, setLoggedIn] = useState(false);
 
@@ -35,6 +37,25 @@ function App() {
     setErrorPopupOpen(false);
   }
 
+  const handleRegister = ({ name, email, password}) => {
+    return MainApi.register(name, email, password)
+      .then((res) => {
+        // if (res.error) {
+        //   throw new Error(res.error);
+        // } else {
+        //   return res;
+        // }
+      })
+      .then(() => {
+        //  пользователь сразу авторизуется
+        history('/movies');
+      })
+      .catch((err) => {
+        // handleRegError();
+        // console.log(err.message);
+      });
+  }
+
   return (
     <div className="app">
 
@@ -45,7 +66,7 @@ function App() {
 
       <Routes>
         <Route exact path="/signup" element={
-         <Register />
+         <Register onRegister={handleRegister} />
         } />
 
         <Route exact path="/signin" element={
