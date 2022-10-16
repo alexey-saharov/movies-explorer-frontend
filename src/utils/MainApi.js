@@ -1,14 +1,25 @@
 import { MAIN_URL } from './constants';
 
+const getAuthHeader = () => {
+  const jwt = localStorage.getItem('jwt');
+  return `Bearer ${jwt}`;
+}
+
+const getHeaders = () => {
+  return {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': getAuthHeader(),
+  }
+};
+
 const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-
   return res.text().then(text => {
     return Promise.reject(`Ошибка: ${JSON.parse(text).message}`);
   });
-
 }
 
 export const register = ( name, email, password ) => {
@@ -41,3 +52,10 @@ export const authorize = (email, password) => {
       }
     })
 };
+
+export const getUser = () => {
+  return fetch(`${MAIN_URL}/users/me`,{
+    headers: getHeaders(),
+  })
+    .then(handleResponse)
+}

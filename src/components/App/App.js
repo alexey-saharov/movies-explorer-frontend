@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
@@ -9,10 +9,13 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import Navigation from '../Navigation/Navigation';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import ErrorPopup from "../ErrorPopup/ErrorPopup";
-import * as MainApi from "../../utils/MainApi";
+import ErrorPopup from '../ErrorPopup/ErrorPopup';
+import * as MainApi from '../../utils/MainApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import RequireAuth from '../RequireAuth/RequireAuth';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({});
   const [isNavMenuVisible, setNavMenuVisible] = useState(false);
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorPopupMessage, setErrorPopupMessage] = useState('');
@@ -20,8 +23,6 @@ function App() {
   const [loginError, setLoginError] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const history = useNavigate();
-
-//  const [loggedIn, setLoggedIn] = useState(false);
 
   function openNavMenu() {
     setNavMenuVisible(true);
@@ -40,6 +41,28 @@ function App() {
     setErrorPopupOpen(false);
   }
 
+  const auth = async () => {
+    const content = await MainApi.getUser()
+      .then((res) => {
+        if (res) {
+          setLoggedIn(true);
+          setCurrentUser(res);
+        }
+      })
+      .catch(() => {
+        return false;
+      })
+    return content;
+  }
+
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+
+    if (jwt) {
+      auth();
+    }
+  }, [loggedIn]);
+
   const handleRegister = ({ name, email, password }) => {
     return MainApi.register(name, email, password)
       .then(res => { return res })
@@ -54,7 +77,7 @@ function App() {
   }
 
   const handleLogin = ({ email, password }) => {
-    return MainApi.authorize(email, password)
+    MainApi.authorize(email, password)
       .then((res) => {
         if (res) {
           if (res.token) {
@@ -74,6 +97,21 @@ function App() {
       });
   }
 
+  const handleSignOut = () => {
+    localStorage.removeItem('jwt');
+    history('/');
+    setLoggedIn(false);
+  }
+
+  const handleUpdateUser = ({ name, email }) => {
+    // api.setUserInfo({ name, about })
+    //   .then(getUserRes => {
+    //     setCurrentUser(getUserRes);
+    //     closeAllPopups();
+    //   })
+    //   .catch(err => console.log(err));
+  };
+
   return (
     <div className="app">
 
@@ -92,15 +130,27 @@ function App() {
         } />
 
         <Route exact path="/movies" element={
-          <Movies onNavMenuClick={openNavMenu} onError={showError} />
+          <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
+            <CurrentUserContext.Provider value={currentUser}>
+              <Movies onNavMenuClick={openNavMenu} onError={showError} />
+            </CurrentUserContext.Provider>
+          </RequireAuth>
         } />
 
         <Route exact path="/saved-movies" element={
-          <SavedMovies onNavMenuClick={openNavMenu} />
+          <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
+            <CurrentUserContext.Provider value={currentUser}>
+              <SavedMovies onNavMenuClick={openNavMenu} />
+            </CurrentUserContext.Provider>
+          </RequireAuth>
         } />
 
         <Route exact path="/profile" element={
-          <Profile onNavMenuClick={openNavMenu} />
+          <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
+            <CurrentUserContext.Provider value={currentUser}>
+              <Profile onNavMenuClick={openNavMenu} onSignOut={handleSignOut} onUpdateUser={handleUpdateUser} />
+            </CurrentUserContext.Provider>
+          </RequireAuth>
         } />
 
         <Route exact path="/" element={

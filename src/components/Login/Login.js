@@ -3,9 +3,10 @@ import './Login.css';
 import '../Link/Link.css';
 import Logo from "../Logo/Logo";
 import { useFormWithValidation } from '../FormValidator/FormValidator';
+import { useNavigate } from 'react-router-dom';
 
 function Login({ onLogin, loginError }) {
-
+  const history = useNavigate();
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
@@ -15,6 +16,11 @@ function Login({ onLogin, loginError }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin(values);
+  }
+
+  const handleRegisterCLick = (e) => {
+    e.preventDefault();
+    history('/signup');
   }
 
   return (
@@ -63,7 +69,8 @@ function Login({ onLogin, loginError }) {
             Войти
           </button>
           <p className="login__registered-text">
-            Ещё не зарегистрированы? <a href="/signup" className="login__registered-text-link link">Регистрация</a>
+            Ещё не зарегистрированы?
+            <a href="/signup" className="login__registered-text-link link" onClick={handleRegisterCLick}>Регистрация</a>
           </p>
 
         </form>

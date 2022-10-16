@@ -1,12 +1,15 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import { moviesApi } from '../../utils/MoviesApi';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
+// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Movies({ onNavMenuClick, onError }) {
+
+  // const currentUser = useContext(CurrentUserContext);
 
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchString, setSearchString] = useState('');

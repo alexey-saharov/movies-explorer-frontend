@@ -3,11 +3,10 @@ import './Register.css';
 import '../Link/Link.css';
 import Logo from '../Logo/Logo';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
-
-
+import { useNavigate } from 'react-router-dom';
 
 function Register({ onRegister, registerError }) {
-
+  const history = useNavigate();
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
@@ -17,6 +16,11 @@ function Register({ onRegister, registerError }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onRegister(values);
+  }
+
+  const handleLoginCLick = (e) => {
+    e.preventDefault();
+    history('/signin');
   }
 
   return (
@@ -81,7 +85,8 @@ function Register({ onRegister, registerError }) {
             Зарегистрироваться
           </button>
           <p className="register__registered-text">
-            Уже зарегистрированы? <a href="/signin" className="register__registered-text-link link">Войти</a>
+            Уже зарегистрированы?
+            <a href="/signin" className="register__registered-text-link link" onClick={handleLoginCLick}>Войти</a>
           </p>
 
         </form>
