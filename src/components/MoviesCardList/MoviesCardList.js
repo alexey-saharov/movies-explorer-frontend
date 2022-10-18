@@ -1,7 +1,7 @@
 import './MoviesCardList.css';
-import MoviesCard from "../MoviesCard/MoviesCard";
+import { MoviesCard } from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ parent, movies, isSearchResultMessageActive, isMoreButtonVisible, onAddMovies }) {
+export function MoviesCardList({ parent, movies, isSearchResultMessageActive, isMoreButtonVisible, onAddMovies }) {
 
   const isTypeMovies =  (parent === 'Movies');
   const classNameMinHeight = (isTypeMovies)
@@ -48,5 +48,3 @@ function MoviesCardList({ parent, movies, isSearchResultMessageActive, isMoreBut
     </section>
   );
 }
-
-export default MoviesCardList;

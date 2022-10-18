@@ -1,9 +1,8 @@
-import accountIcon from "../../images/header-account-icon.svg";
 import './Account.css';
 import '../Link/Link.css';
+import accountIcon from "../../images/header-account-icon.svg";
 
-function Account({ onClick }) {
-
+export function Account({ onClick }) {
   return (
     <a href='/profile' aria-label="Аккаунт" className="account link" onClick={onClick}>
       <span className="account__text">Аккаунт</span>
@@ -14,5 +13,3 @@ function Account({ onClick }) {
     </a>
   );
 }
-
-export default Account;

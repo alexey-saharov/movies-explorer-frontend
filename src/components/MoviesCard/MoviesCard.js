@@ -2,10 +2,9 @@ import './MoviesCard.css';
 import moviesCardLike from '../../images/moviescard-like.svg';
 import moviesCardIsLiked from '../../images/moviescard-isliked.svg';
 import moviesCardDislikeMySavedMovie from '../../images/moviescard-dislike-my-saved-movie.svg';
-import {MOVIES_URL} from "../../utils/constants";
+import { MOVIES_URL } from "../../utils/constants";
 
-
-function MoviesCard({ movie, isLiked, mySavedMovie }) {
+export function MoviesCard({ movie, isLiked, mySavedMovie }) {
 
   const url = MOVIES_URL.slice(0, MOVIES_URL.lastIndexOf('/')) + movie.image.url;
 
@@ -45,5 +44,3 @@ function MoviesCard({ movie, isLiked, mySavedMovie }) {
     </>
   );
 }
-
-export default MoviesCard;

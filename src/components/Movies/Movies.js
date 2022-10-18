@@ -1,13 +1,11 @@
-import {useEffect, useState, useContext} from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { moviesApi } from '../../utils/MoviesApi';
-import Header from '../Header/Header';
-import SearchForm from '../SearchForm/SearchForm';
-import Preloader from '../Preloader/Preloader';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Footer from '../Footer/Footer';
+import { SearchForm } from '../SearchForm/SearchForm';
+import { Preloader } from '../Preloader/Preloader';
+import { MoviesCardList } from '../MoviesCardList/MoviesCardList';
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Movies({ onNavMenuClick, onError, onLinkClick }) {
+export function Movies({ onError }) {
 
   // const currentUser = useContext(CurrentUserContext);
 
@@ -102,29 +100,23 @@ function Movies({ onNavMenuClick, onError, onLinkClick }) {
   }
 
   return (
-    <>
-      <Header onNavMenuClick={onNavMenuClick} onLinkClick={onLinkClick} />
-      <main>
-        <SearchForm
-          searchString={searchString}
-          setSearchString={setSearchString}
-          onSearch={handleSearchMovie}
-          onSearchStringChange={handleSearchStringChange}
-          isSearchShortMovie={isSearchShortMovie}
-          onFilterToggle={handleFilterCheckBoxToggle}
-        />
-        <Preloader isActive={isPreloaderActive} />
-        <MoviesCardList
-          parent={'Movies'}
-          movies={visibleMovies}
-          isSearchResultMessageActive={isSearchResultMessageActive}
-          isMoreButtonVisible={isMoreButtonVisible}
-          onAddMovies={handleAddMovies}
-        />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <SearchForm
+        searchString={searchString}
+        setSearchString={setSearchString}
+        onSearch={handleSearchMovie}
+        onSearchStringChange={handleSearchStringChange}
+        isSearchShortMovie={isSearchShortMovie}
+        onFilterToggle={handleFilterCheckBoxToggle}
+      />
+      <Preloader isActive={isPreloaderActive} />
+      <MoviesCardList
+        parent={'Movies'}
+        movies={visibleMovies}
+        isSearchResultMessageActive={isSearchResultMessageActive}
+        isMoreButtonVisible={isMoreButtonVisible}
+        onAddMovies={handleAddMovies}
+      />
+    </main>
   );
 }
-
-export default Movies;

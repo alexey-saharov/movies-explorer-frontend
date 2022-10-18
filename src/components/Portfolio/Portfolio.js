@@ -1,7 +1,7 @@
 import './Portfolio.css';
 import '../Link/Link.css';
 
-function Portfolio() {
+export function Portfolio() {
   return (
     <section className="portfolio">
 
@@ -63,5 +63,3 @@ function Portfolio() {
     </section>
   );
 }
-
-export default Portfolio;

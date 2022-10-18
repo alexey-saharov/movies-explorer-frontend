@@ -1,7 +1,6 @@
 import './ErrorPopup.css';
 
-function ErrorPopup({ isOpen, message, onClose }) {
-
+export function ErrorPopup({ isOpen, message, onClose }) {
   const classNamePopup = `error-popup ${isOpen && 'error-popup_is-opened'}`;
 
   return (
@@ -13,5 +12,3 @@ function ErrorPopup({ isOpen, message, onClose }) {
     </section>
   );
 }
-
-export default ErrorPopup;

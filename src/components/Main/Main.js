@@ -1,27 +1,17 @@
-import Header from '../Header/Header';
-import Promo from '../Promo/Promo';
-import AboutProject from '../AboutProject/AboutProject';
-import Techs from '../Techs/Techs';
-import AboutMe from '../AboutMe/AboutMe';
-import Portfolio from '../Portfolio/Portfolio';
-import Footer from '../Footer/Footer';
+import { Promo } from '../Promo/Promo';
+import { AboutProject } from '../AboutProject/AboutProject';
+import { Techs } from '../Techs/Techs';
+import { AboutMe } from '../AboutMe/AboutMe';
+import { Portfolio } from '../Portfolio/Portfolio';
 
-
-function Main({ onLinkClick }) {
-
+export function Main() {
   return (
-    <>
-      <Header parent={'Main'} onLinkClick={onLinkClick} />
-      <main>
-        <Promo />
-        <AboutProject />
-        <Techs />
-        <AboutMe />
-        <Portfolio />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+    </main>
   );
 }
-
-export default Main;

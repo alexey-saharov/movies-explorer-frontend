@@ -1,7 +1,6 @@
 import './FilterCheckbox.css';
 
-function FilterCheckbox({ isFilterChecked, onFilterToggle }) {
-
+export function FilterCheckbox({ isFilterChecked, onFilterToggle }) {
   return (
     <div
       className={`filter-checkbox ${isFilterChecked && 'filter-checkbox_checked'} link`}
@@ -11,5 +10,3 @@ function FilterCheckbox({ isFilterChecked, onFilterToggle }) {
     </div>
   );
 }
-
-export default FilterCheckbox;

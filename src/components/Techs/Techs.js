@@ -1,6 +1,6 @@
 import './Techs.css';
 
-function Techs() {
+export function Techs() {
   return (
     <section className="techs">
       <h2 className="techs__title">Технологии</h2>
@@ -23,5 +23,3 @@ function Techs() {
     </section>
   );
 }
-
-export default Techs;

@@ -1,11 +1,10 @@
 import {useContext, useEffect, useState} from "react";
-import Header from "../Header/Header";
 import './Profile.css';
 import '../Link/Link.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError, onLinkClick }) {
+export function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError, onLinkClick }) {
   const [isChanged, setIsChanged] = useState(false);
 
   const currentUser = useContext(CurrentUserContext);
@@ -31,7 +30,7 @@ function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError, onLink
 
   return (
     <>
-      <Header onNavMenuClick={onNavMenuClick} onLinkClick={onLinkClick} />
+      {/*<Header isTypeMain={false} onNavMenuClick={onNavMenuClick} onLinkClick={onLinkClick} />*/}
       <section className="profile">
         <form action="" className="profile__form" onSubmit={handleSubmit}>
           <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>
@@ -84,5 +83,3 @@ function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError, onLink
     </>
   );
 }
-
-export default Profile;

@@ -1,12 +1,10 @@
-import Header from '../Header/Header';
-import SearchForm from '../SearchForm/SearchForm';
-import Preloader from '../Preloader/Preloader';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Footer from '../Footer/Footer';
-import {useContext, useState} from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { SearchForm } from '../SearchForm/SearchForm';
+import { Preloader } from '../Preloader/Preloader';
+import { MoviesCardList } from '../MoviesCardList/MoviesCardList';
+import { useState} from 'react';
+// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function SavedMovies({ onNavMenuClick, onLinkClick }) {
+export function SavedMovies() {
 
   // const currentUser = useContext(CurrentUserContext);
 
@@ -15,16 +13,10 @@ function SavedMovies({ onNavMenuClick, onLinkClick }) {
   const handleSearchMovie = () => {};
 
   return (
-    <>
-      <Header onNavMenuClick={onNavMenuClick} onLinkClick={onLinkClick} />
-      <main>
-        <SearchForm onSearchMovie={handleSearchMovie} />
-        <Preloader isVisible={false} />
-        <MoviesCardList parent={'SavedMovies'} movies={movies} />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <SearchForm onSearchMovie={handleSearchMovie} />
+      <Preloader isVisible={false} />
+      <MoviesCardList parent={'SavedMovies'} movies={movies} />
+    </main>
   );
 }
-
-export default SavedMovies;

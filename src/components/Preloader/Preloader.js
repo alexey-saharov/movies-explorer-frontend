@@ -1,7 +1,7 @@
 import React from 'react'
 import './Preloader.css'
 
-const Preloader = ({ isActive }) => {
+export const Preloader = ({ isActive }) => {
   return (
     <div className={`preloader ${isActive && 'preloader_active'}`}>
       <div className="preloader__container">
@@ -10,5 +10,3 @@ const Preloader = ({ isActive }) => {
     </div>
   )
 };
-
-export default Preloader

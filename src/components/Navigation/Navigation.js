@@ -1,8 +1,8 @@
 import './Navigation.css';
 import '../Link/Link.css';
-import Account from '../Account/Account';
+import { Account } from '../Account/Account';
 
-function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
+export function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
 
   return (
     <section className={`navigation ${isNavMenuVisible && 'navigation_active'}`}>
@@ -62,5 +62,3 @@ function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
     </section>
   );
 }
-
-export default Navigation;

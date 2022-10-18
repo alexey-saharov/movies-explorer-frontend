@@ -1,7 +1,7 @@
 import './Footer.css';
 import '../Link/Link.css';
 
-function Footer() {
+export function Footer() {
   return (
 
     <section className="footer">
@@ -35,5 +35,3 @@ function Footer() {
     </section>
   );
 }
-
-export default Footer;

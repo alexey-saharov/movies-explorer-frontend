@@ -1,6 +1,6 @@
 import './AboutProject.css';
 
-function AboutProject() {
+export function AboutProject() {
   return (
     <>
       <a id="AboutProject"></a>
@@ -41,5 +41,3 @@ function AboutProject() {
     </>
   );
 }
-
-export default AboutProject;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './SearchForm.css';
+import { FilterCheckbox } from '../FilterCheckbox/FilterCheckbox';
 import searchFormIcon from '../../images/searchform-icon.svg';
-import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ searchString, setSearchString, onSearch, onSearchStringChange, isSearchShortMovie, onFilterToggle }) {
+export function SearchForm({ searchString, setSearchString, onSearch, onSearchStringChange, isSearchShortMovie, onFilterToggle }) {
   const [searchMovieError, setSearchMovieError] = useState('');
 
 
@@ -70,5 +70,3 @@ function SearchForm({ searchString, setSearchString, onSearch, onSearchStringCha
     </section>
   );
 }
-
-export default SearchForm;

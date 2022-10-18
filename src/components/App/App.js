@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
-import Main from '../Main/Main';
-import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
-import Register from '../Register/Register';
-import Login from '../Login/Login';
-import Profile from '../Profile/Profile';
-import Navigation from '../Navigation/Navigation';
-import PageNotFound from '../PageNotFound/PageNotFound';
-import ErrorPopup from '../ErrorPopup/ErrorPopup';
+import { Main } from '../Main/Main';
+import { Movies } from '../Movies/Movies';
+import { SavedMovies } from '../SavedMovies/SavedMovies';
+import { Register } from '../Register/Register';
+import { Login } from '../Login/Login';
+import { Profile } from '../Profile/Profile';
+import { Navigation } from '../Navigation/Navigation';
+import { PageNotFound } from '../PageNotFound/PageNotFound';
+import { ErrorPopup } from '../ErrorPopup/ErrorPopup';
 import * as MainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import RequireAuth from '../RequireAuth/RequireAuth';
+import { RequireAuth } from '../RequireAuth/RequireAuth';
+import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
 
-function App() {
+export function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isNavMenuVisible, setNavMenuVisible] = useState(false);
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
@@ -139,7 +141,9 @@ function App() {
         <Route exact path="/movies" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
             <CurrentUserContext.Provider value={currentUser}>
-              <Movies onNavMenuClick={openNavMenu} onError={showMessage} onLinkClick={handleLinkClick} />
+              <Header isTypeMain={false} loggedIn={loggedIn} onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
+              <Movies onError={showMessage} />
+              <Footer />
             </CurrentUserContext.Provider>
           </RequireAuth>
         } />
@@ -147,7 +151,9 @@ function App() {
         <Route exact path="/saved-movies" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
             <CurrentUserContext.Provider value={currentUser}>
-              <SavedMovies onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
+              <Header isTypeMain={false} loggedIn={loggedIn} onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
+              <SavedMovies />
+              <Footer />
             </CurrentUserContext.Provider>
           </RequireAuth>
         } />
@@ -155,17 +161,22 @@ function App() {
         <Route exact path="/profile" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
             <CurrentUserContext.Provider value={currentUser}>
-              <Profile onNavMenuClick={openNavMenu} onSignOut={handleSignOut} onUpdateUser={handleUpdateUser}  onLinkClick={handleLinkClick}/>
+              <Header isTypeMain={false} loggedIn={loggedIn} onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
+              <Profile onSignOut={handleSignOut} onUpdateUser={handleUpdateUser}  onLinkClick={handleLinkClick}/>
             </CurrentUserContext.Provider>
           </RequireAuth>
         } />
 
         <Route exact path="/" element={
-          <Main onLinkClick={handleLinkClick} />
+          <>
+            <Header isTypeMain={true} loggedIn={loggedIn} onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
+            <Main />
+            <Footer />
+          </>
         } />
 
         <Route path="*" element={
-          <PageNotFound />
+          <PageNotFound onLinkClick={handleLinkClick} />
         } />
       </Routes>
 
@@ -174,5 +185,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
