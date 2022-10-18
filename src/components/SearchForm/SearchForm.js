@@ -7,7 +7,7 @@ function SearchForm({ searchString, setSearchString, onSearch, onSearchStringCha
   const [searchMovieError, setSearchMovieError] = useState('');
 
 
-  function handleValidation() {
+  const handleValidation = () => {
     if (!searchString) {
       setSearchMovieError('Нужно ввести ключевое слово');
       return false;
@@ -19,7 +19,7 @@ function SearchForm({ searchString, setSearchString, onSearch, onSearchStringCha
     setSearchMovieError('');
   }, [searchString]);
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (handleValidation()) {
       onSearch({ searchString })

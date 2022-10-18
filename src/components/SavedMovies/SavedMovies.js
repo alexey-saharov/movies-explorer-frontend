@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import {useContext, useState} from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function SavedMovies({ onNavMenuClick }) {
+function SavedMovies({ onNavMenuClick, onLinkClick }) {
 
   // const currentUser = useContext(CurrentUserContext);
 
@@ -16,7 +16,7 @@ function SavedMovies({ onNavMenuClick }) {
 
   return (
     <>
-      <Header onNavMenuClick={onNavMenuClick} />
+      <Header onNavMenuClick={onNavMenuClick} onLinkClick={onLinkClick} />
       <main>
         <SearchForm onSearchMovie={handleSearchMovie} />
         <Preloader isVisible={false} />

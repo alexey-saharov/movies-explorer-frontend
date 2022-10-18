@@ -59,3 +59,12 @@ export const getUser = () => {
   })
     .then(handleResponse)
 }
+
+export const setUserInfo = (UserInfo) => {
+  return fetch(`${MAIN_URL}/users/me`,{
+    method: 'PATCH',
+    headers: getHeaders(),
+    body: JSON.stringify(UserInfo),
+  })
+    .then(handleResponse)
+}

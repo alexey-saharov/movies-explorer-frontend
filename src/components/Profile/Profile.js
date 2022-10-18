@@ -5,9 +5,7 @@ import '../Link/Link.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-// todo реализовать onUpdateUser
-
-function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError }) {
+function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError, onLinkClick }) {
   const [isChanged, setIsChanged] = useState(false);
 
   const currentUser = useContext(CurrentUserContext);
@@ -27,12 +25,13 @@ function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsChanged(false);
     onUpdateUser(values);
   }
 
   return (
     <>
-      <Header onNavMenuClick={onNavMenuClick} />
+      <Header onNavMenuClick={onNavMenuClick} onLinkClick={onLinkClick} />
       <section className="profile">
         <form action="" className="profile__form" onSubmit={handleSubmit}>
           <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>
@@ -69,10 +68,11 @@ function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError }) {
           </div>
           <span id="email-error" className="profile__input-error">{errors.email}</span>
 
+          {/*todo информацию об ошибках показывать в InfoToolTipPopup*/}
           <p className="profile__error">{profileError}</p>
 
           <button
-            type="button"
+            type="submit"
             disabled={!(isChanged && isValid)}
             className={`profile__edit-button ${isChanged && isValid && 'link profile__edit-button_active'}`}
           >

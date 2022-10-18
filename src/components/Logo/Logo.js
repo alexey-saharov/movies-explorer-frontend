@@ -1,22 +1,16 @@
 import './Logo.css';
 import '../Link/Link.css';
 import logo from "../../images/header-logo.svg";
-import { useNavigate } from 'react-router-dom';
 
-function Logo() {
-  const history = useNavigate();
-
-  const handleCLick = (e) => {
-    e.preventDefault();
-    history('/');
-  }
+function Logo({ onLinkClick }) {
 
   return (
-    <a href="/"
-       aria-label="Логотип Movies-explorer"
-       className="logo link"
-       onClick={handleCLick}
-       style = {{ backgroundImage: `url(${logo})`}}
+    <a
+      href="/"
+      aria-label="Логотип Movies-explorer"
+      className="logo link"
+      onClick={e => {onLinkClick(e, '/')}}
+      style = {{ backgroundImage: `url(${logo})`}}
     >
     </a>
   );

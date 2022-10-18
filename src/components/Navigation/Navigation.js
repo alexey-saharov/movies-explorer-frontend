@@ -1,34 +1,8 @@
 import './Navigation.css';
 import '../Link/Link.css';
 import Account from '../Account/Account';
-import { useNavigate } from 'react-router-dom';
 
-function Navigation({ isNavMenuVisible, onCLose }) {
-  const history = useNavigate();
-
-  const handleAccountCLick = (e) => {
-    e.preventDefault();
-    history('/profile');
-    onCLose();
-  }
-
-  const handleMainCLick = (e) => {
-    e.preventDefault();
-    history('/');
-    onCLose();
-  }
-
-  const handleMoviesCLick = (e) => {
-    e.preventDefault();
-    history('/movies');
-    onCLose();
-  }
-
-  const handleSavedMoviesCLick = (e) => {
-    e.preventDefault();
-    history('/saved-movies');
-    onCLose();
-  }
+function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
 
   return (
     <section className={`navigation ${isNavMenuVisible && 'navigation_active'}`}>
@@ -43,17 +17,47 @@ function Navigation({ isNavMenuVisible, onCLose }) {
         <ul className="navigation__items">
 
           <li className="navigation__item link">
-            <a href='/' className="navigation__link" onClick={handleMainCLick}>Главная</a>
+            <a
+              href='/'
+              className="navigation__link"
+              onClick={e => {
+                onLinkClick(e, '/');
+                onCLose();
+              }}
+            >
+              Главная
+            </a>
           </li>
           <li className="navigation__item link">
-            <a href='/movies' className="navigation__link" onClick={handleMoviesCLick}>Фильмы</a>
+            <a
+              href='/movies'
+              className="navigation__link"
+              onClick={e => {
+                onLinkClick(e, '/movies');
+                onCLose();
+              }}
+            >
+              Фильмы
+            </a>
           </li>
           <li className="navigation__item link">
-            <a href='/saved-movies' className="navigation__link" onClick={handleSavedMoviesCLick}>Сохранённые фильмы</a>
+            <a
+              href='/saved-movies'
+              className="navigation__link"
+              onClick={e => {
+                onLinkClick(e, '/saved-movies');
+                onCLose();
+              }}
+            >
+              Сохранённые фильмы
+            </a>
           </li>
         </ul>
 
-        <Account onClick={handleAccountCLick} />
+        <Account onClick={e => {
+          onLinkClick(e, '/profile');
+          onCLose();
+        }} />
       </nav>
     </section>
   );

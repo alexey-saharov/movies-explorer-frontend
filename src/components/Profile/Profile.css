@@ -93,19 +93,16 @@
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
-  /*border-radius: 6px;*/
   border: none;
   border-bottom: 2px solid transparent;
   outline: none;
   background: transparent;
   color: #fff;
+  transition: border-bottom-color .3s;
 }
 
 .profile__input-field:focus {
   border-bottom: 2px solid #fff;
-  /*padding-right: 10px;*/
-  /*color: #000;*/
-  /*background-color: #f2f2f2;*/
 }
 
 .profile__line {

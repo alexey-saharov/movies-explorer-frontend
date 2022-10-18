@@ -7,7 +7,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Movies({ onNavMenuClick, onError }) {
+function Movies({ onNavMenuClick, onError, onLinkClick }) {
 
   // const currentUser = useContext(CurrentUserContext);
 
@@ -83,7 +83,7 @@ function Movies({ onNavMenuClick, onError }) {
     setMoreButtonVisible(visibleMovies.length < searchedMovies.length);
   }, [visibleMovies]);
 
-  function handleAddMovies() {
+  const handleAddMovies = () => {
     const windowWidth = getWindowWidth();
     const initialCount = visibleMovies.length;
 
@@ -103,7 +103,7 @@ function Movies({ onNavMenuClick, onError }) {
 
   return (
     <>
-      <Header onNavMenuClick={onNavMenuClick} />
+      <Header onNavMenuClick={onNavMenuClick} onLinkClick={onLinkClick} />
       <main>
         <SearchForm
           searchString={searchString}

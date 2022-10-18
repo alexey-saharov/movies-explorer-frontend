@@ -3,53 +3,30 @@ import '../Link/Link.css';
 import menuIcon from '../../images/header-menu-icon.svg';
 import Logo from '../Logo/Logo';
 import Account from '../Account/Account';
-import { useNavigate } from 'react-router-dom';
 
-function Header({ parent, onNavMenuClick }) {
-  const history = useNavigate();
+function Header({ parent, onNavMenuClick, onLinkClick }) {
   const typeMain = (parent === 'Main');
-
-  const handleRegisterCLick = (e) => {
-    e.preventDefault();
-    history('/signup');
-  }
-
-  const handleLoginCLick = (e) => {
-    e.preventDefault();
-    history('/signin');
-  }
-
-  const handleMoviesCLick = (e) => {
-    e.preventDefault();
-    history('/movies');
-  }
-
-  const handleSavedMoviesCLick = (e) => {
-    e.preventDefault();
-    history('/saved-movies');
-  }
-
-  const handleAccountCLick = (e) => {
-    e.preventDefault();
-    history('/profile');
-  }
 
   return (
     <section className={`header ${typeMain && 'header_main'}`}>
 
       <div className="header__items">
-        <Logo />
+        <Logo onLinkClick={onLinkClick} />
 
         {(typeMain)
         ?
           <nav className="header__menu-main">
-            <a href="/signup" className="header__menu-main-item link" onClick={handleRegisterCLick}>
+            <a
+              href="/signup"
+              className="header__menu-main-item link"
+              onClick={e => {onLinkClick(e, '/signup')}}
+            >
               Регистрация
             </a>
             <a
               href="/signin"
               className="header__menu-main-item header__menu-main-item_button link"
-              onClick={handleLoginCLick}
+              onClick={e => {onLinkClick(e, '/signin')}}
             >
               Войти
             </a>
@@ -58,14 +35,22 @@ function Header({ parent, onNavMenuClick }) {
           <>
             <nav className="header__menu-common">
               <div className="header__menu-common-items">
-                <a href="/movies" className="header__menu-common-item link" onClick={handleMoviesCLick}>
+                <a
+                  href="/movies"
+                  className="header__menu-common-item link"
+                  onClick={e => {onLinkClick(e, '/movies')}}
+                >
                   Фильмы
                 </a>
-                <a href="/saved-movies" className="header__menu-common-item link" onClick={handleSavedMoviesCLick}>
+                <a
+                  href="/saved-movies"
+                  className="header__menu-common-item link"
+                  onClick={e => {onLinkClick(e, '/saved-movies')}}
+                >
                   Сохранённые фильмы
                 </a>
               </div>
-              <Account onClick={handleAccountCLick} />
+              <Account onClick={e => {onLinkClick(e, '/profile')}} />
 
             </nav>
 

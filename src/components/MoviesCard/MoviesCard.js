@@ -20,7 +20,7 @@ function MoviesCard({ movie, isLiked, mySavedMovie }) {
     ? moviesCardDislikeMySavedMovie
     : ((isLiked) ? moviesCardIsLiked : moviesCardLike);
 
-  function handleLikeClick() {
+  const handleLikeClick = () => {
 
   }
 

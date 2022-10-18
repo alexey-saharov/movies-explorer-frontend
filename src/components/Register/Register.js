@@ -3,10 +3,8 @@ import './Register.css';
 import '../Link/Link.css';
 import Logo from '../Logo/Logo';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
-import { useNavigate } from 'react-router-dom';
 
-function Register({ onRegister, registerError }) {
-  const history = useNavigate();
+function Register({ onRegister, registerError, onLinkClick }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
@@ -18,17 +16,12 @@ function Register({ onRegister, registerError }) {
     onRegister(values);
   }
 
-  const handleLoginCLick = (e) => {
-    e.preventDefault();
-    history('/signin');
-  }
-
   return (
     <>
       <section className="register">
         <form className="register__form" onSubmit={handleSubmit}>
           <div className="register__logo-container">
-            <Logo />
+            <Logo onLinkClick={onLinkClick} />
           </div>
           <h2 className="register__title">Добро пожаловать!</h2>
 
@@ -74,6 +67,7 @@ function Register({ onRegister, registerError }) {
           />
           <span id="name-error" className="register__input-error">{errors.password}</span>
 
+          {/*todo информацию об ошибках показывать в InfoToolTipPopup*/}
           <p className="register__error">{registerError}</p>
 
           <button
@@ -86,7 +80,15 @@ function Register({ onRegister, registerError }) {
           </button>
           <p className="register__registered-text">
             Уже зарегистрированы?
-            <a href="/signin" className="register__registered-text-link link" onClick={handleLoginCLick}>Войти</a>
+            <a
+              href="/signin"
+              className="register__registered-text-link link"
+              onClick={e => {
+                onLinkClick(e, '/signin');
+              }}
+            >
+              Войти
+            </a>
           </p>
 
         </form>

@@ -81,9 +81,12 @@
   font-size: 14px;
   line-height: 20px;
   border: none;
+  border-radius: 9px;
   outline: none;
   background: transparent;
   color: #8B8B8B;
+  transition: background-color .3s;
+
 }
 @media screen and (min-width: 768px) {
   .search-form__input {
@@ -96,7 +99,6 @@
 }
 
 .search-form__input:focus {
-  border-radius: 9px;
   color: #000;
   background-color: #f2f2f2;
 }

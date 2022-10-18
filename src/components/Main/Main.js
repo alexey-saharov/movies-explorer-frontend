@@ -7,11 +7,11 @@ import Portfolio from '../Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
 
 
-function Main() {
+function Main({ onLinkClick }) {
 
   return (
     <>
-      <Header parent={'Main'} />
+      <Header parent={'Main'} onLinkClick={onLinkClick} />
       <main>
         <Promo />
         <AboutProject />

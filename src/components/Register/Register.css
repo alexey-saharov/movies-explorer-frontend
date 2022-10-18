@@ -77,6 +77,8 @@
   border-radius: 8px;
   color: #fff;
   background-color: #2F2F2F;
+  transition: background-color .3s;
+
 }
 
 .register__input_invalid {

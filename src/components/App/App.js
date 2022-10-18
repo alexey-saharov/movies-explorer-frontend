@@ -22,22 +22,27 @@ function App() {
   const [registerError, setRegisterError] = useState('');
   const [loginError, setLoginError] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
-  const history = useNavigate();
+  const navigateTo = useNavigate();
 
-  function openNavMenu() {
+  const handleLinkClick = (e, url) => {
+    e.preventDefault();
+    navigateTo(url);
+  }
+
+  const openNavMenu = () => {
     setNavMenuVisible(true);
   }
 
-  function closeNavMenu() {
+  const closeNavMenu = () => {
     setNavMenuVisible(false);
   }
 
-  function showError( message ) {
+  const showMessage = (message) => {
     setErrorPopupMessage(message);
     setErrorPopupOpen(true);
   }
 
-  function closeErrorPopup() {
+  const closeErrorPopup = () => {
     setErrorPopupOpen(false);
   }
 
@@ -69,7 +74,7 @@ function App() {
       .then(() => {
         //  todo пользователь сразу авторизуется
         setRegisterError('');
-        history('/movies');
+        navigateTo('/movies');
       })
       .catch((err) => {
         setRegisterError(err);
@@ -90,7 +95,7 @@ function App() {
       })
       .then(() => {
         setLoginError('');
-        history('/movies');
+        navigateTo('/movies');
       })
       .catch((err) => {
         setLoginError(err);
@@ -99,17 +104,18 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem('jwt');
-    history('/');
+    navigateTo('/');
     setLoggedIn(false);
+    //todo удалять из LS данные по просмотру фильмов
   }
 
   const handleUpdateUser = ({ name, email }) => {
-    // api.setUserInfo({ name, about })
-    //   .then(getUserRes => {
-    //     setCurrentUser(getUserRes);
-    //     closeAllPopups();
-    //   })
-    //   .catch(err => console.log(err));
+    MainApi.setUserInfo({ name, email })
+      .then(res => {
+        setCurrentUser(res);
+        showMessage('Успешно обновлено');
+      })
+      .catch(err => showMessage(err));
   };
 
   return (
@@ -118,21 +124,22 @@ function App() {
       <Navigation
         isNavMenuVisible={isNavMenuVisible}
         onCLose={closeNavMenu}
+        onLinkClick={handleLinkClick}
       />
 
       <Routes>
         <Route exact path="/signup" element={
-         <Register onRegister={handleRegister} registerError={registerError} />
+         <Register onRegister={handleRegister} registerError={registerError} onLinkClick={handleLinkClick} />
         } />
 
         <Route exact path="/signin" element={
-          <Login onLogin={handleLogin} loginError={loginError} />
+          <Login onLogin={handleLogin} loginError={loginError} onLinkClick={handleLinkClick} />
         } />
 
         <Route exact path="/movies" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
             <CurrentUserContext.Provider value={currentUser}>
-              <Movies onNavMenuClick={openNavMenu} onError={showError} />
+              <Movies onNavMenuClick={openNavMenu} onError={showMessage} onLinkClick={handleLinkClick} />
             </CurrentUserContext.Provider>
           </RequireAuth>
         } />
@@ -140,7 +147,7 @@ function App() {
         <Route exact path="/saved-movies" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
             <CurrentUserContext.Provider value={currentUser}>
-              <SavedMovies onNavMenuClick={openNavMenu} />
+              <SavedMovies onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
             </CurrentUserContext.Provider>
           </RequireAuth>
         } />
@@ -148,13 +155,13 @@ function App() {
         <Route exact path="/profile" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
             <CurrentUserContext.Provider value={currentUser}>
-              <Profile onNavMenuClick={openNavMenu} onSignOut={handleSignOut} onUpdateUser={handleUpdateUser} />
+              <Profile onNavMenuClick={openNavMenu} onSignOut={handleSignOut} onUpdateUser={handleUpdateUser}  onLinkClick={handleLinkClick}/>
             </CurrentUserContext.Provider>
           </RequireAuth>
         } />
 
         <Route exact path="/" element={
-          <Main />
+          <Main onLinkClick={handleLinkClick} />
         } />
 
         <Route path="*" element={
