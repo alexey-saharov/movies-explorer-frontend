@@ -1,7 +1,7 @@
 import './Footer.css';
 import '../Link/Link.css';
 
-export function Footer() {
+export default function Footer() {
   return (
 
     <section className="footer">

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import './Register.css';
 import '../Link/Link.css';
-import { Logo } from '../Logo/Logo';
+import Logo from '../Logo/Logo';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-export function Register({ onRegister, registerError, onLinkClick }) {
+export default function Register({ onRegister, registerError, onLinkClick }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {

@@ -1,10 +1,10 @@
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import './Profile.css';
 import '../Link/Link.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-export function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError, onLinkClick }) {
+export default function Profile({ onSignOut, onUpdateUser, profileError }) {
   const [isChanged, setIsChanged] = useState(false);
 
   const currentUser = useContext(CurrentUserContext);
@@ -30,7 +30,6 @@ export function Profile({ onNavMenuClick, onSignOut, onUpdateUser, profileError,
 
   return (
     <>
-      {/*<Header isTypeMain={false} onNavMenuClick={onNavMenuClick} onLinkClick={onLinkClick} />*/}
       <section className="profile">
         <form action="" className="profile__form" onSubmit={handleSubmit}>
           <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>

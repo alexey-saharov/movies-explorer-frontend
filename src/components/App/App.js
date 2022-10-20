@@ -1,30 +1,36 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
-import { Main } from '../Main/Main';
-import { Movies } from '../Movies/Movies';
-import { SavedMovies } from '../SavedMovies/SavedMovies';
-import { Register } from '../Register/Register';
-import { Login } from '../Login/Login';
-import { Profile } from '../Profile/Profile';
-import { Navigation } from '../Navigation/Navigation';
-import { PageNotFound } from '../PageNotFound/PageNotFound';
-import { ErrorPopup } from '../ErrorPopup/ErrorPopup';
 import * as MainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { RequireAuth } from '../RequireAuth/RequireAuth';
-import { Header } from "../Header/Header";
-import { Footer } from "../Footer/Footer";
+import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
+import Navigation from '../Navigation/Navigation';
+import PageNotFound from '../PageNotFound/PageNotFound';
+import ErrorPopup from '../ErrorPopup/ErrorPopup';
+import RequireAuth from '../RequireAuth/RequireAuth';
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import {MOVIES_URL} from "../../utils/constants";
 
-export function App() {
+export default function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isNavMenuVisible, setNavMenuVisible] = useState(false);
+
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorPopupMessage, setErrorPopupMessage] = useState('');
   const [registerError, setRegisterError] = useState('');
   const [loginError, setLoginError] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
   const navigateTo = useNavigate();
+
+  const [movies, setMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
+
 
   const handleLinkClick = (e, url) => {
     e.preventDefault();
@@ -64,7 +70,6 @@ export function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-
     if (jwt) {
       auth();
     }
@@ -105,10 +110,9 @@ export function App() {
   }
 
   const handleSignOut = () => {
-    localStorage.removeItem('jwt');
+    localStorage.clear();
     navigateTo('/');
     setLoggedIn(false);
-    //todo удалять из LS данные по просмотру фильмов
   }
 
   const handleUpdateUser = ({ name, email }) => {
@@ -119,6 +123,50 @@ export function App() {
       })
       .catch(err => showMessage(err));
   };
+
+
+  const addSavedMovie = (movie) => {
+    const baseUrl = MOVIES_URL.slice(0, MOVIES_URL.lastIndexOf('/'));
+
+    const savedMovie = {
+      country: movie.country,
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      image: baseUrl + movie.image.url,
+      trailerLink: movie.trailerLink,
+      thumbnail:  baseUrl + movie.image.formats.thumbnail.url,
+      movieId: movie.id,
+      nameRU: movie.nameRU,
+      nameEN: movie.nameEN,
+    };
+
+    MainApi.addMovie(savedMovie)
+      .then(newSavedMovie => {
+        setSavedMovies([...savedMovies, newSavedMovie]);
+      })
+      .catch(err => showMessage(err));
+  }
+
+  const deleteSavedMovie = (movie) => {
+
+
+  }
+
+  const handleToggleLike = (movie) => {
+    // временно
+    addSavedMovie(movie);
+
+
+    // if (liked) {
+    //   deleteSavedMovie(movie);
+    // } else {
+    //   addSavedMovie(movie);
+    // }
+  }
+
+
 
   return (
     <div className="app">
@@ -140,36 +188,60 @@ export function App() {
 
         <Route exact path="/movies" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
-            <CurrentUserContext.Provider value={currentUser}>
-              <Header isTypeMain={false} loggedIn={loggedIn} onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
-              <Movies onError={showMessage} />
-              <Footer />
-            </CurrentUserContext.Provider>
+            <Header
+              isTypeMain={false}
+              loggedIn={loggedIn}
+              onNavMenuClick={openNavMenu}
+              onLinkClick={handleLinkClick}
+            />
+            <Movies
+              movies={movies}
+              setMovies={setMovies}
+              onError={showMessage}
+              onToggleLike={handleToggleLike} />
+            <Footer />
           </RequireAuth>
         } />
 
         <Route exact path="/saved-movies" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
-            <CurrentUserContext.Provider value={currentUser}>
-              <Header isTypeMain={false} loggedIn={loggedIn} onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
-              <SavedMovies />
-              <Footer />
-            </CurrentUserContext.Provider>
+            <Header
+              isTypeMain={false}
+              loggedIn={loggedIn}
+              onNavMenuClick={openNavMenu}
+              onLinkClick={handleLinkClick}
+            />
+            <SavedMovies
+              savedMovies={savedMovies}
+              setSavedMovies={setSavedMovies}
+              onToggleLike={deleteSavedMovie}
+            />
+            <Footer />
           </RequireAuth>
         } />
 
         <Route exact path="/profile" element={
           <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
             <CurrentUserContext.Provider value={currentUser}>
-              <Header isTypeMain={false} loggedIn={loggedIn} onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
-              <Profile onSignOut={handleSignOut} onUpdateUser={handleUpdateUser}  onLinkClick={handleLinkClick}/>
+              <Header
+                isTypeMain={false}
+                loggedIn={loggedIn}
+                onNavMenuClick={openNavMenu}
+                onLinkClick={handleLinkClick}
+              />
+              <Profile onSignOut={handleSignOut} onUpdateUser={handleUpdateUser}  />
             </CurrentUserContext.Provider>
           </RequireAuth>
         } />
 
         <Route exact path="/" element={
           <>
-            <Header isTypeMain={true} loggedIn={loggedIn} onNavMenuClick={openNavMenu} onLinkClick={handleLinkClick} />
+            <Header
+              isTypeMain={true}
+              loggedIn={loggedIn}
+              onNavMenuClick={openNavMenu}
+              onLinkClick={handleLinkClick}
+            />
             <Main />
             <Footer />
           </>

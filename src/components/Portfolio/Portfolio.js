@@ -1,7 +1,7 @@
 import './Portfolio.css';
 import '../Link/Link.css';
 
-export function Portfolio() {
+export default function Portfolio() {
   return (
     <section className="portfolio">
 

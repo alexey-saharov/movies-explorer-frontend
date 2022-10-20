@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './SearchForm.css';
-import { FilterCheckbox } from '../FilterCheckbox/FilterCheckbox';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import searchFormIcon from '../../images/searchform-icon.svg';
 
-export function SearchForm({ searchString, setSearchString, onSearch, onSearchStringChange, isSearchShortMovie, onFilterToggle }) {
+export default function SearchForm({ string, setString, onSearch, onStringChange, isShortMovies,
+                                     onToggleShortMovies }) {
   const [searchMovieError, setSearchMovieError] = useState('');
 
-
   const handleValidation = () => {
-    if (!searchString) {
+    if (!string) {
       setSearchMovieError('Нужно ввести ключевое слово');
       return false;
     }
@@ -17,18 +17,16 @@ export function SearchForm({ searchString, setSearchString, onSearch, onSearchSt
 
   React.useEffect(() => {
     setSearchMovieError('');
-  }, [searchString]);
+  }, [string]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (handleValidation()) {
-      onSearch({ searchString })
-    }
+    handleValidation() && onSearch();
   }
 
   const handleInputChange = ({ target }) => {
-    setSearchString(target.value);
-    onSearchStringChange();
+    setString(target.value);
+    onStringChange();
   }
 
   return (
@@ -45,7 +43,7 @@ export function SearchForm({ searchString, setSearchString, onSearch, onSearchSt
             className="search-form__input"
             required
             placeholder="Фильм"
-            value={searchString}
+            value={string}
             onChange={handleInputChange}
           />
 
@@ -58,8 +56,8 @@ export function SearchForm({ searchString, setSearchString, onSearch, onSearchSt
         <div className="search-form__search-filter">
           <div className="search-form__vertical-line"></div>
           <FilterCheckbox
-            isFilterChecked={isSearchShortMovie}
-            onFilterToggle={onFilterToggle}
+            isFilterChecked={isShortMovies}
+            onFilterToggle={onToggleShortMovies}
           />
           <p className="search-form__search-filter-text">Короткометражки</p>
         </div>

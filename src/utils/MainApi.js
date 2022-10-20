@@ -68,3 +68,27 @@ export const setUserInfo = (UserInfo) => {
   })
     .then(handleResponse)
 }
+
+export const getMovies = () => {
+  return fetch(`${MAIN_URL}/movies`,{
+    headers: getHeaders(),
+  })
+    .then(handleResponse)
+}
+
+export const addMovie = (movie) => {
+  return fetch(`${MAIN_URL}/movies`,{
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(movie),
+  })
+    .then(handleResponse)
+}
+
+export const deleteMovie = ({ _id }) => {
+  return fetch(`${MAIN_URL}/movies/${_id}`,{
+    method: 'DELETE',
+    headers: getHeaders(),
+  })
+    .then(handleResponse)
+}

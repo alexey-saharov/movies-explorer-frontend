@@ -1,14 +1,12 @@
 import './MoviesCardList.css';
-import { MoviesCard } from "../MoviesCard/MoviesCard";
+import MoviesCard from "../MoviesCard/MoviesCard";
 
-export function MoviesCardList({ parent, movies, isSearchResultMessageActive, isMoreButtonVisible, onAddMovies }) {
+export default function MoviesCardList({ isTypeSavedMovies, movies, isNothingFoundActive, isMoreButtonVisible,
+                                         onAddMovies, onToggleLike }) {
 
-  const isTypeMovies =  (parent === 'Movies');
-  const classNameMinHeight = (isTypeMovies)
-    ? 'movies-card-list__min-height-movies'
-    : 'movies-card-list__min-height-saved-movies';
-
-  const mySavedMovie = !isTypeMovies;
+  const classNameMinHeight = (isTypeSavedMovies)
+    ? 'movies-card-list__min-height-saved-movies'
+    : 'movies-card-list__min-height-movies';
 
   return (
 
@@ -19,8 +17,9 @@ export function MoviesCardList({ parent, movies, isSearchResultMessageActive, is
           <li key={movie.id} className="movies-card-list__item">
             <MoviesCard
               movie={movie}
-              isLiked={false}
-              mySavedMovie={mySavedMovie}
+              isTypeSavedMovies={isTypeSavedMovies}
+              isLiked={movie.isLiked}
+              onToggleLike={onToggleLike}
             />
           </li>
         ))}
@@ -28,8 +27,7 @@ export function MoviesCardList({ parent, movies, isSearchResultMessageActive, is
 
       <p className={`movies-card-list__nothing-found
         ${
-          isTypeMovies &&
-          isSearchResultMessageActive &&
+          isNothingFoundActive &&
           (movies.length === 0) &&
           'movies-card-list__nothing-found_active'}`
         }

@@ -1,6 +1,6 @@
 import './AboutProject.css';
 
-export function AboutProject() {
+export default function AboutProject() {
   return (
     <>
       <a id="AboutProject"></a>

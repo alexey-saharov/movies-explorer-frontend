@@ -1,7 +1,7 @@
 import './Promo.css';
 import webWorld from '../../images/promo-web-world.svg';
 
-export function Promo() {
+export default function Promo() {
   return (
     <section className="promo">
       <div className="promo__items">

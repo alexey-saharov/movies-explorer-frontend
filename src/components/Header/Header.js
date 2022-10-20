@@ -1,10 +1,10 @@
 import './Header.css';
 import '../Link/Link.css';
 import menuIcon from '../../images/header-menu-icon.svg';
-import { Logo } from '../Logo/Logo';
-import { Account } from '../Account/Account';
+import Logo from '../Logo/Logo';
+import Account from '../Account/Account';
 
-export function Header({ isTypeMain, loggedIn, onNavMenuClick, onLinkClick }) {
+export default function Header({ isTypeMain, loggedIn, onNavMenuClick, onLinkClick }) {
 
   return (
     <section className={`header ${isTypeMain && 'header_main'}`}>

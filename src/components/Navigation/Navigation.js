@@ -1,8 +1,10 @@
 import './Navigation.css';
 import '../Link/Link.css';
-import { Account } from '../Account/Account';
+import Account from '../Account/Account';
 
-export function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
+export default function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
+
+  // закрывать при клике снаружи
 
   return (
     <section className={`navigation ${isNavMenuVisible && 'navigation_active'}`}>

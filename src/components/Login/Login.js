@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import './Login.css';
 import '../Link/Link.css';
-import { Logo } from "../Logo/Logo";
+import Logo from "../Logo/Logo";
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-export function Login({ onLogin, loginError, onLinkClick }) {
+export default function Login({ onLogin, loginError, onLinkClick }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {

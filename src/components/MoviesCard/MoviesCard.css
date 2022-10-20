@@ -1,3 +1,7 @@
+.movies-card__img-link {
+  display: block;
+}
+
 .movies-card__img {
   aspect-ratio: 16 / 9;
   width: 100%;

@@ -2,7 +2,7 @@ import './Logo.css';
 import '../Link/Link.css';
 import logo from "../../images/header-logo.svg";
 
-export function Logo({ onLinkClick }) {
+export default function Logo({ onLinkClick }) {
 
   return (
     <a

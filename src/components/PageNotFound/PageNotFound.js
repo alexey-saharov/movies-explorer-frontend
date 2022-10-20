@@ -1,7 +1,7 @@
 import './PageNotFound.css';
 import '../Link/Link.css';
 
-export function PageNotFound({ onLinkClick }) {
+export default function PageNotFound({ onLinkClick }) {
   return (
     <>
       <section className="page-not-found">
