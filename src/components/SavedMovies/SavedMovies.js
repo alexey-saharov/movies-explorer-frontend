@@ -23,31 +23,20 @@ export default function SavedMovies({ onToggleLike }) {
     const isShortSavedMoviesLS = JSON.parse(localStorage.getItem('isShortSavedMovies'));
     (isShortSavedMoviesLS !== null) && setShortSavedMovies(isShortSavedMoviesLS);
 
-    // const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+    const sm = JSON.parse(localStorage.getItem('savedMovies'));
 
-    // (!savedMovies)
-    //   ?
-    MainApi.getMovies()
-      .then(items => {
-        setFilteredSavedMovies(items);
-        localStorage.setItem('savedMovies', JSON.stringify(items));
-      });
-      // : setFilteredSavedMovies(savedMovies);
+    (sm)
+      ? setFilteredSavedMovies(sm)
+      : MainApi.getMovies()
+        .then(items => {
+          setFilteredSavedMovies(items);
+          localStorage.setItem('savedMovies', JSON.stringify(items));
+        })
+        .catch(() => {});
   }, []);
-
-  // useEffect(() => {
-  //   handleSearch();
-  // }, [savedMovies]);
-
-
 
   const handleSearch = async () => {
     setPreloaderActive(true);
-
-    // const savedMovies = JSON.parse(localStorage.getItem('filteredSavedMovies'));
-    // (!savedMovies) &&
-    //   await MainApi.getMovies()
-    //     .then(items => localStorage.setItem('savedMovies', JSON.stringify(items)));
 
     const sm = JSON.parse(localStorage.getItem('savedMovies'));
     const fm = getFilteredMovies({
@@ -73,6 +62,23 @@ export default function SavedMovies({ onToggleLike }) {
     setShortSavedMovies(!isShortSavedMovies);
   }
 
+  const handleDislike = (movie) => {
+    // console.log(`SavedMovie - handleDislike - movie = ${JSON.stringify(movie)}`);
+
+    const sm = JSON.parse(localStorage.getItem('savedMovies'));
+
+    const i = sm.findIndex(item => item.movieId === movie.movieId);
+    console.log(`SavedMovie - handleDislike - i = ${i}`);
+
+    console.log(`SavedMovie - handleDislike - sm.length = ${sm.length}`);
+    (i > -1) && sm.splice(i, 1)
+    console.log(`SavedMovie - handleDislike - sm.length = ${sm.length}`);
+
+    localStorage.setItem('savedMovies', JSON.stringify(sm));
+
+    setFilteredSavedMovies(sm);
+  }
+
   return (
     <main>
       <SearchForm
@@ -88,7 +94,7 @@ export default function SavedMovies({ onToggleLike }) {
         isTypeSavedMovies={true}
         movies={filteredSavedMovies}
         isNothingFoundActive={isNothingFoundActive}
-        onToggleLike={onToggleLike}
+        onToggleLike={handleDislike}
       />
     </main>
   );

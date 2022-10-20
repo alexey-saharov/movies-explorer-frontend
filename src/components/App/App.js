@@ -28,10 +28,6 @@ export default function App() {
   const [loginError, setLoginError] = useState('');
   const navigateTo = useNavigate();
 
-  const [movies, setMovies] = useState([]);
-  const [savedMovies, setSavedMovies] = useState([]);
-
-
   const handleLinkClick = (e, url) => {
     e.preventDefault();
     navigateTo(url);
@@ -126,9 +122,10 @@ export default function App() {
 
 
   const addSavedMovie = (movie) => {
+    movie.isLiked = true;
     const baseUrl = MOVIES_URL.slice(0, MOVIES_URL.lastIndexOf('/'));
 
-    const savedMovie = {
+    const newSavedMovie = {
       country: movie.country,
       director: movie.director,
       duration: movie.duration,
@@ -142,28 +139,23 @@ export default function App() {
       nameEN: movie.nameEN,
     };
 
-    MainApi.addMovie(savedMovie)
+    console.log(`App - addSavedMovie - movie = ${movie}`);
+
+    MainApi.addMovie(newSavedMovie)
       .then(newSavedMovie => {
-        setSavedMovies([...savedMovies, newSavedMovie]);
+        const sm = JSON.parse(localStorage.getItem('savedMovies'));
+        localStorage.setItem('savedMovies', JSON.stringify([...sm, newSavedMovie]));
       })
       .catch(err => showMessage(err));
   }
 
   const deleteSavedMovie = (movie) => {
-
-
+    console.log(`App - deleteSavedMovie - movie = ${movie}`);
+    movie.isLiked = false;
   }
 
   const handleToggleLike = (movie) => {
-    // временно
-    addSavedMovie(movie);
-
-
-    // if (liked) {
-    //   deleteSavedMovie(movie);
-    // } else {
-    //   addSavedMovie(movie);
-    // }
+    (movie.isLiked) ? deleteSavedMovie(movie) : addSavedMovie(movie);
   }
 
 
@@ -195,8 +187,6 @@ export default function App() {
               onLinkClick={handleLinkClick}
             />
             <Movies
-              movies={movies}
-              setMovies={setMovies}
               onError={showMessage}
               onToggleLike={handleToggleLike} />
             <Footer />
@@ -212,8 +202,6 @@ export default function App() {
               onLinkClick={handleLinkClick}
             />
             <SavedMovies
-              savedMovies={savedMovies}
-              setSavedMovies={setSavedMovies}
               onToggleLike={deleteSavedMovie}
             />
             <Footer />

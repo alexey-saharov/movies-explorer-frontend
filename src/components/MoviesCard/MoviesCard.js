@@ -5,7 +5,7 @@ import moviesCardIsLiked from '../../images/moviescard-isliked.svg';
 import moviesCardDislikeMySavedMovie from '../../images/moviescard-dislike-saved-movie.svg';
 import { MOVIES_URL } from "../../utils/constants";
 
-export default function MoviesCard({ movie, isTypeSavedMovies, isLiked, onToggleLike }) {
+export default function MoviesCard({ movie, isTypeSavedMovies, onToggleLike }) {
 
   const url = (isTypeSavedMovies)
     ? movie.image
@@ -20,7 +20,7 @@ export default function MoviesCard({ movie, isTypeSavedMovies, isLiked, onToggle
 
   const likeImage = (isTypeSavedMovies)
     ? moviesCardDislikeMySavedMovie
-    : ((isLiked) ? moviesCardIsLiked : moviesCardLike);
+    : ((movie.isLiked) ? moviesCardIsLiked : moviesCardLike);
 
   const handleToggleLike = () => {
     onToggleLike(movie);

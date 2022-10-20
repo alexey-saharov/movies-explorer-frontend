@@ -4,8 +4,9 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { getFilteredMovies } from '../MoviesFilter/MoviesFilter';
+import * as MainApi from "../../utils/MainApi";
 
-export default function Movies({ movies, setMovies, onError, onToggleLike }) {
+export default function Movies({ onError, onToggleLike }) {
 
   const [stringMovies, setStringMovies] = useState('');
   const [isShortMovies, setShortMovies] = useState(true);
@@ -15,17 +16,15 @@ export default function Movies({ movies, setMovies, onError, onToggleLike }) {
   const [isPreloaderActive, setPreloaderActive] = useState(false);
   const [isNothingFoundActive, setNothingFoundActive] = useState(false);
 
-  // const [searchedMovies, setSearchedMovies] = useState([]);
-  // const [searchString, setSearchString] = useState('');
-  // const [isSearchShortMovie, setSearchShortMovie] = useState(true);
-
   useEffect(() => {
-
     const filteredMoviesLS = JSON.parse(localStorage.getItem('filteredMovies'));
     (filteredMoviesLS && filteredMoviesLS.length > 0) && setFilteredMovies(filteredMoviesLS);
 
     const visibleMoviesCountLS = JSON.parse(localStorage.getItem('visibleMoviesCount'));
     (visibleMoviesCountLS > 0) && setVisibleMovies(filteredMovies.slice(0, visibleMoviesCountLS));
+
+    (filteredMoviesLS) && (filteredMoviesLS.length > 0) && (visibleMoviesCountLS) &&
+      setVisibleMovies(filteredMoviesLS.slice(0, visibleMoviesCountLS));
 
     const stringMoviesLS = localStorage.getItem('stringMovies');
     stringMoviesLS && setStringMovies(stringMoviesLS);
@@ -46,53 +45,55 @@ export default function Movies({ movies, setMovies, onError, onToggleLike }) {
     setPreloaderActive(true);
     setVisibleMovies([]);
 
-    // (!movies || (movies.length === 0)) &&
-      // исправить на запрос к двум Api
-      // сборка массива movies с добавленным полем isLiked
-      // затем setMovies
-      moviesApi.getMovies()
-        .then(items => {
-          setMovies(items);
+    let m = JSON.parse(localStorage.getItem('movies'));
+    let sm = JSON.parse(localStorage.getItem('savedMovies'));
 
-          // с этого места работать с полученным массивом movies
-          setFilteredMovies(
-            getFilteredMovies({
-              movies: items,
-              str: stringMovies,
-              shortMovies: isShortMovies,
-            })
-          );
+    ((!m) || (!sm)) &&
+    await Promise.all([
+      moviesApi.getMovies(),
+      MainApi.getMovies()
+    ])
+      .then(([moviesApiRes, MainApiRes]) => {
+        m = moviesApiRes;
+        localStorage.setItem('movies', JSON.stringify(m));
+        sm = MainApiRes;
+        localStorage.setItem('savedMovies', JSON.stringify(sm));
+      })
+      .catch(() => {
+        setPreloaderActive(false);
+        onError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. ' +
+          'Подождите немного и попробуйте ещё раз');
+      });
 
-          // console.log(`${filteredMovies.length}`);
-          // console.log(stringMovies);
+    const fm = getFilteredMovies({
+      movies: m,
+      str: stringMovies,
+      shortMovies: isShortMovies,
+    });
 
+    fm.map(item_fm => {
+      item_fm.isLiked = !!sm.find(item_sm => item_fm.id === item_sm.movieId);
+      return item_fm;
+    });
 
+    localStorage.setItem('filteredMovies', JSON.stringify(fm));
+    localStorage.setItem('stringMovies', stringMovies);
+    localStorage.setItem('isShortMovies', JSON.stringify(isShortMovies));
 
-          localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
-          localStorage.setItem('stringMovies', stringMovies);
-          localStorage.setItem('isShortMovies', JSON.stringify(isShortMovies));
+    setPreloaderActive(false);
+    (!fm || (fm.length === 0)) &&
+    setNothingFoundActive(true);
 
+    const windowWidth = getWindowWidth();
+    const initialCountMovies = (windowWidth >= 1280)
+      ? 12
+      : (windowWidth >= 768 && windowWidth < 1280)
+        ? 8
+        : 5;
 
-          setPreloaderActive(false);
-          (!filteredMovies || (filteredMovies.length === 0)) &&
-            setNothingFoundActive(true);
-
-          const windowWidth = getWindowWidth();
-          const initialCountMovies = (windowWidth >= 1280)
-            ? 12
-            : (windowWidth >= 768 && windowWidth < 1280)
-              ? 8
-              : 5;
-
-          setVisibleMovies(filteredMovies.slice(0, initialCountMovies));
-          localStorage.setItem('visibleMoviesCount', JSON.stringify(initialCountMovies));
-        })
-        .catch(err => {
-          setPreloaderActive(false);
-          onError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. ' +
-            'Подождите немного и попробуйте ещё раз');
-        });
-
+    setVisibleMovies(fm.slice(0, initialCountMovies));
+    setFilteredMovies(fm);
+    localStorage.setItem('visibleMoviesCount', JSON.stringify(initialCountMovies));
   };
 
   useEffect(() => {

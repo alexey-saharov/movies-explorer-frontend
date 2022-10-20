@@ -18,7 +18,6 @@ export default function MoviesCardList({ isTypeSavedMovies, movies, isNothingFou
             <MoviesCard
               movie={movie}
               isTypeSavedMovies={isTypeSavedMovies}
-              isLiked={movie.isLiked}
               onToggleLike={onToggleLike}
             />
           </li>
