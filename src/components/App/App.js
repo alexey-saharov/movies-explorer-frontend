@@ -28,6 +28,10 @@ export default function App() {
   const [loginError, setLoginError] = useState('');
   const navigateTo = useNavigate();
 
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [visibleMovies, setVisibleMovies] = useState([]);
+  const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
+
   const handleLinkClick = (e, url) => {
     e.preventDefault();
     navigateTo(url);
@@ -120,44 +124,91 @@ export default function App() {
       .catch(err => showMessage(err));
   };
 
+  const handleLike = (id) => {
+    console.log(`App - handleLike - start`);
 
-  const addSavedMovie = (movie) => {
-    movie.isLiked = true;
-    const baseUrl = MOVIES_URL.slice(0, MOVIES_URL.lastIndexOf('/'));
+    const fm = JSON.parse(localStorage.getItem('filteredMovies'));
+    const i = fm.findIndex(item => item.id === id);
+    if (i > -1) {
+      const baseUrl = MOVIES_URL.slice(0, MOVIES_URL.lastIndexOf('/'));
+      const movie = fm[i];
+      const newSavedMovie = {
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: baseUrl + movie.image.url,
+        trailerLink: movie.trailerLink,
+        thumbnail:  baseUrl + movie.image.formats.thumbnail.url,
+        movieId: movie.id,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+      };
 
-    const newSavedMovie = {
-      country: movie.country,
-      director: movie.director,
-      duration: movie.duration,
-      year: movie.year,
-      description: movie.description,
-      image: baseUrl + movie.image.url,
-      trailerLink: movie.trailerLink,
-      thumbnail:  baseUrl + movie.image.formats.thumbnail.url,
-      movieId: movie.id,
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-    };
+      console.log(`App - handleLike - id = ${id}`);
 
-    console.log(`App - addSavedMovie - movie = ${movie}`);
 
-    MainApi.addMovie(newSavedMovie)
-      .then(newSavedMovie => {
-        const sm = JSON.parse(localStorage.getItem('savedMovies'));
-        localStorage.setItem('savedMovies', JSON.stringify([...sm, newSavedMovie]));
-      })
-      .catch(err => showMessage(err));
+      MainApi.addMovie(newSavedMovie)
+        .then(newSavedMovie => {
+          let sm = JSON.parse(localStorage.getItem('savedMovies'));
+          console.log(`App - handleLike - sm.length = ${sm.length}`);
+          sm = [...sm, newSavedMovie];
+          console.log(`App - handleLike - sm = ${JSON.stringify(sm)}`);
+          sm.sort((a,b) => a.movieId - b.movieId);
+          console.log(`App - handleLike - sm = ${JSON.stringify(sm)}`);
+
+          console.log(`App - handleLike - sm.length = ${sm.length}`);
+          localStorage.setItem('savedMovies', JSON.stringify(sm));
+          setFilteredSavedMovies(sm);
+
+          fm[i].isLiked = true;
+          localStorage.setItem('filteredMovies', JSON.stringify(fm));
+          setFilteredMovies(fm);
+
+          const vmc = JSON.parse(localStorage.getItem('visibleMoviesCount'));
+          setVisibleMovies(fm.slice(0, vmc));
+        })
+        .catch(err => {
+          // showMessage(err));
+        });
+    }
   }
 
-  const deleteSavedMovie = (movie) => {
-    console.log(`App - deleteSavedMovie - movie = ${movie}`);
-    movie.isLiked = false;
+  const handleDislike = (id) => {
+    console.log(`App - handleDislike - start`);
+    const sm = JSON.parse(localStorage.getItem('savedMovies'));
+    let i = sm.findIndex(item => item.movieId === id);
+    if (i > -1) {
+      console.log(`App - handleDislike - id = ${id}`);
+
+      MainApi.deleteMovie({ _id: sm[i]._id })
+        .then(() => {
+          sm.splice(i, 1);
+          console.log(`App - handleDislike - sm.length = ${sm.length}`);
+          localStorage.setItem('savedMovies', JSON.stringify(sm));
+          setFilteredSavedMovies(sm);
+
+          const fm = JSON.parse(localStorage.getItem('filteredMovies'));
+          i = fm.findIndex(item => item.id === id);
+          (i > -1) && (fm[i].isLiked = false);
+          localStorage.setItem('filteredMovies', JSON.stringify(fm));
+          setFilteredMovies(fm);
+
+          const vmc = JSON.parse(localStorage.getItem('visibleMoviesCount'));
+          setVisibleMovies(fm.slice(0, vmc));
+        })
+        .catch(err => {
+          // showMessage(err));
+        });
+    }
   }
 
-  const handleToggleLike = (movie) => {
-    (movie.isLiked) ? deleteSavedMovie(movie) : addSavedMovie(movie);
+  const handleToggleLike = (id) => {
+    const sm = JSON.parse(localStorage.getItem('savedMovies'));
+    let i = sm.findIndex(item => item.movieId === id);
+    (i > -1) ? handleDislike(id) : handleLike(id);
   }
-
 
 
   return (
@@ -187,8 +238,13 @@ export default function App() {
               onLinkClick={handleLinkClick}
             />
             <Movies
+              filteredMovies={filteredMovies}
+              setFilteredMovies={setFilteredMovies}
+              visibleMovies={visibleMovies}
+              setVisibleMovies={setVisibleMovies}
               onError={showMessage}
-              onToggleLike={handleToggleLike} />
+              onToggleLike={handleToggleLike}
+            />
             <Footer />
           </RequireAuth>
         } />
@@ -202,7 +258,9 @@ export default function App() {
               onLinkClick={handleLinkClick}
             />
             <SavedMovies
-              onToggleLike={deleteSavedMovie}
+              filteredSavedMovies={filteredSavedMovies}
+              setFilteredSavedMovies={setFilteredSavedMovies}
+              onDislike={handleDislike}
             />
             <Footer />
           </RequireAuth>

@@ -4,7 +4,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import searchFormIcon from '../../images/searchform-icon.svg';
 
 export default function SearchForm({ string, setString, onSearch, onStringChange, isShortMovies,
-                                     onToggleShortMovies }) {
+                                     onToggleShortMovies, isTypeSavedMovies }) {
   const [searchMovieError, setSearchMovieError] = useState('');
 
   const handleValidation = () => {
@@ -21,7 +21,7 @@ export default function SearchForm({ string, setString, onSearch, onStringChange
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleValidation() && onSearch();
+    (isTypeSavedMovies || handleValidation()) && onSearch();
   }
 
   const handleInputChange = ({ target }) => {

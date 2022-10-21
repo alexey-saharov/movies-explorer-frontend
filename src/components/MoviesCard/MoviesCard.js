@@ -22,8 +22,12 @@ export default function MoviesCard({ movie, isTypeSavedMovies, onToggleLike }) {
     ? moviesCardDislikeMySavedMovie
     : ((movie.isLiked) ? moviesCardIsLiked : moviesCardLike);
 
+  const id = (isTypeSavedMovies)
+    ? movie.movieId
+    : movie.id;
+
   const handleToggleLike = () => {
-    onToggleLike(movie);
+    onToggleLike(id);
   }
 
   return (

@@ -4,10 +4,8 @@ import Account from '../Account/Account';
 
 export default function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
 
-  // закрывать при клике снаружи
-
   return (
-    <section className={`navigation ${isNavMenuVisible && 'navigation_active'}`}>
+    <section className={`navigation ${isNavMenuVisible && 'navigation_active'}`} onClick={onCLose}>
 
       <button
         type="button"
@@ -15,7 +13,7 @@ export default function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
         className="navigation__button-close link"
         onClick={onCLose}
       ></button>
-      <nav className={`navigation__menu ${isNavMenuVisible && 'navigation__menu_active'}`}>
+      <nav className={`navigation__menu ${isNavMenuVisible && 'navigation__menu_active'}`} onClick={(e)=>{e.stopPropagation ()}}>
         <ul className="navigation__items">
 
           <li className="navigation__item link">

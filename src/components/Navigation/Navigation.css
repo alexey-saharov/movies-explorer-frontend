@@ -4,6 +4,7 @@
   z-index: 100;
   visibility: hidden;
   opacity: 0;
+  cursor: pointer;
   background-color: rgba(0, 0, 0, .3);
   transition: visibility .4s, opacity .4s ease-in-out;
 }

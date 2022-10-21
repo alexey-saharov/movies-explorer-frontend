@@ -86,6 +86,8 @@ export const addMovie = (movie) => {
 }
 
 export const deleteMovie = ({ _id }) => {
+  console.log(`MainApi - deleteMovie - _id = ${_id}`);
+
   return fetch(`${MAIN_URL}/movies/${_id}`,{
     method: 'DELETE',
     headers: getHeaders(),

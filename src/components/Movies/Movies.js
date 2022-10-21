@@ -6,31 +6,29 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { getFilteredMovies } from '../MoviesFilter/MoviesFilter';
 import * as MainApi from "../../utils/MainApi";
 
-export default function Movies({ onError, onToggleLike }) {
+export default function Movies({ filteredMovies, setFilteredMovies, visibleMovies, setVisibleMovies, onError, onToggleLike }) {
 
   const [stringMovies, setStringMovies] = useState('');
   const [isShortMovies, setShortMovies] = useState(true);
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  const [visibleMovies, setVisibleMovies] = useState([]);
   const [isMoreButtonVisible, setMoreButtonVisible] = useState(false);
   const [isPreloaderActive, setPreloaderActive] = useState(false);
   const [isNothingFoundActive, setNothingFoundActive] = useState(false);
 
   useEffect(() => {
-    const filteredMoviesLS = JSON.parse(localStorage.getItem('filteredMovies'));
-    (filteredMoviesLS && filteredMoviesLS.length > 0) && setFilteredMovies(filteredMoviesLS);
+    const fm = JSON.parse(localStorage.getItem('filteredMovies'));
+    (fm && fm.length > 0) && setFilteredMovies(fm);
 
-    const visibleMoviesCountLS = JSON.parse(localStorage.getItem('visibleMoviesCount'));
-    (visibleMoviesCountLS > 0) && setVisibleMovies(filteredMovies.slice(0, visibleMoviesCountLS));
+    const vmc = JSON.parse(localStorage.getItem('visibleMoviesCount'));
+    (vmc > 0) && setVisibleMovies(filteredMovies.slice(0, vmc));
 
-    (filteredMoviesLS) && (filteredMoviesLS.length > 0) && (visibleMoviesCountLS) &&
-      setVisibleMovies(filteredMoviesLS.slice(0, visibleMoviesCountLS));
+    (fm) && (fm.length > 0) && (vmc) &&
+      setVisibleMovies(fm.slice(0, vmc));
 
-    const stringMoviesLS = localStorage.getItem('stringMovies');
-    stringMoviesLS && setStringMovies(stringMoviesLS);
+    const strmov = localStorage.getItem('stringMovies');
+    strmov && setStringMovies(strmov);
 
-    const isShortMoviesLS = JSON.parse(localStorage.getItem('isShortMovies'));
-    (isShortMoviesLS !== null) && setShortMovies(isShortMoviesLS);
+    const ism = JSON.parse(localStorage.getItem('isShortMovies'));
+    (ism !== null) && setShortMovies(ism);
   }, []);
 
   const handleShortMovieToggle = () => {
@@ -127,6 +125,7 @@ export default function Movies({ onError, onToggleLike }) {
         onStringChange={handleStringChange}
         isShortMovies={isShortMovies}
         onToggleShortMovies={handleShortMovieToggle}
+        isTypeSavedMovies={false}
       />
       <Preloader isActive={isPreloaderActive} />
       <MoviesCardList
