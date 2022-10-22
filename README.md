@@ -1,5 +1,7 @@
 # movies-explorer-frontend
 
+пул реквест - https://github.com/alexey-saharov/movies-explorer-frontend/pull/2
+
 макет Figma - https://disk.yandex.ru/d/ljEwnghP3s5LIA
 
 IP-адрес сервера - 84.252.142.45 \
