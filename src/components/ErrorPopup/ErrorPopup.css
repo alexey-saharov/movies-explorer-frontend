@@ -63,9 +63,24 @@
   }
 }
 
+.error-popup__image {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 120px;
+  height: 120px;
+  border: none;
+  object-fit: cover;
+}
+@media screen and (min-width: 768px) {
+  .error-popup__image {
+    margin-top: 50px;
+    margin-bottom: 32px;
+  }
+}
+
 .error-popup__text {
-  margin: 26px auto 0 22px;
-  align-self: start;
+  margin: 0;
+  padding-bottom: 40px;
   max-width: calc(282px - 2 * 22px);
   font-size: 18px;
   line-height: 22px;
@@ -74,7 +89,7 @@
 
 @media screen and (min-width: 768px) {
   .error-popup__text {
-    margin: 40px auto 0 36px;
+    padding-bottom: 50px;
     max-width: calc(430px - 2 * 36px);
     font-size: 20px;
     line-height: 25px;

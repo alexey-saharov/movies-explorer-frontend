@@ -4,7 +4,7 @@ import '../Link/Link.css';
 import Logo from "../Logo/Logo";
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-export default function Login({ onLogin, loginError, onLinkClick }) {
+export default function Login({ onLogin, onLinkClick }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
@@ -15,8 +15,6 @@ export default function Login({ onLogin, loginError, onLinkClick }) {
     e.preventDefault();
     onLogin(values);
   }
-
-
 
   return (
     <>
@@ -52,9 +50,6 @@ export default function Login({ onLogin, loginError, onLinkClick }) {
             onChange={handleChange}
           />
           <span id="password-error" className="login__input-error">{errors.password}</span>
-
-          {/*todo информацию об ошибках показывать в InfoToolTipPopup*/}
-          <p className="login__error">{loginError}</p>
 
           <button
             type="submit"

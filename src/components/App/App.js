@@ -24,8 +24,8 @@ export default function App() {
 
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorPopupMessage, setErrorPopupMessage] = useState('');
-  const [registerError, setRegisterError] = useState('');
-  const [loginError, setLoginError] = useState('');
+  // const [registerError, setRegisterError] = useState('');
+  // const [loginError, setLoginError] = useState('');
   const navigateTo = useNavigate();
 
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -46,6 +46,8 @@ export default function App() {
   }
 
   const showMessage = (message) => {
+   (typeof(message) !== "string") && (message = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. ' +
+     'Подождите немного и попробуйте ещё раз');
     setErrorPopupMessage(message);
     setErrorPopupOpen(true);
   }
@@ -79,12 +81,10 @@ export default function App() {
     return MainApi.register(name, email, password)
       .then(res => { return res })
       .then(() => {
-        setRegisterError('');
+        // setRegisterError('');
         handleLogin({ email, password });
       })
-      .catch((err) => {
-        setRegisterError(err);
-      });
+      .catch(err => showMessage(err));
   }
 
   const handleLogin = ({ email, password }) => {
@@ -95,17 +95,13 @@ export default function App() {
             localStorage.setItem('jwt', res.token);
             setLoggedIn(true);
           }
-        } else {
-          throw new Error('Что-то пошло не так!');
         }
       })
       .then(() => {
-        setLoginError('');
+        // setLoginError('');
         navigateTo('/movies');
       })
-      .catch((err) => {
-        setLoginError(err);
-      });
+      .catch(err => showMessage(err));
   }
 
   const handleSignOut = () => {
@@ -168,9 +164,7 @@ export default function App() {
           const vmc = JSON.parse(localStorage.getItem('visibleMoviesCount'));
           setVisibleMovies(fm.slice(0, vmc));
         })
-        .catch(err => {
-          // showMessage(err));
-        });
+        .catch(err => showMessage(err));
     }
   }
 
@@ -197,9 +191,7 @@ export default function App() {
           const vmc = JSON.parse(localStorage.getItem('visibleMoviesCount'));
           setVisibleMovies(fm.slice(0, vmc));
         })
-        .catch(err => {
-          // showMessage(err));
-        });
+        .catch(err => showMessage(err));
     }
   }
 
@@ -215,17 +207,17 @@ export default function App() {
 
       <Navigation
         isNavMenuVisible={isNavMenuVisible}
-        onCLose={closeNavMenu}
+        onClose={closeNavMenu}
         onLinkClick={handleLinkClick}
       />
 
       <Routes>
         <Route exact path="/signup" element={
-         <Register onRegister={handleRegister} registerError={registerError} onLinkClick={handleLinkClick} />
+         <Register onRegister={handleRegister} onLinkClick={handleLinkClick} />
         } />
 
         <Route exact path="/signin" element={
-          <Login onLogin={handleLogin} loginError={loginError} onLinkClick={handleLinkClick} />
+          <Login onLogin={handleLogin} onLinkClick={handleLinkClick} />
         } />
 
         <Route exact path="/movies" element={
@@ -260,6 +252,7 @@ export default function App() {
               filteredSavedMovies={filteredSavedMovies}
               setFilteredSavedMovies={setFilteredSavedMovies}
               onDislike={handleDislike}
+              onError={showMessage}
             />
             <Footer />
           </RequireAuth>

@@ -14,11 +14,12 @@ const getHeaders = () => {
 };
 
 const handleResponse = (res) => {
+  console.log('MainApi - handleResponse - start');
   if (res.ok) {
     return res.json();
   }
   return res.text().then(text => {
-    return Promise.reject(`Ошибка: ${JSON.parse(text).message}`);
+    return Promise.reject(`${JSON.parse(text).message}`);
   });
 }
 
@@ -46,6 +47,7 @@ export const authorize = (email, password) => {
   })
     .then(handleResponse)
     .then((data) => {
+      console.log('MainApi - authorize - then2');
       if (data.token) {
         localStorage.setItem('jwt', data.token);
         return data;

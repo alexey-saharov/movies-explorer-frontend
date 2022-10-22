@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import * as MainApi from '../../utils/MainApi';
 import { getFilteredMovies } from '../MoviesFilter/MoviesFilter';
 
-export default function SavedMovies({ filteredSavedMovies, setFilteredSavedMovies, onDislike }) {
+export default function SavedMovies({ filteredSavedMovies, setFilteredSavedMovies, onDislike, onError }) {
 
   const [stringSavedMovies, setStringSavedMovies] = useState('');
   const [isShortSavedMovies, setShortSavedMovies] = useState(true);
@@ -39,7 +39,10 @@ export default function SavedMovies({ filteredSavedMovies, setFilteredSavedMovie
           setFilteredSavedMovies(items);
           localStorage.setItem('savedMovies', JSON.stringify(items));
         })
-        .catch(() => {});
+        .catch(() => {
+          onError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. ' +
+            'Подождите немного и попробуйте ещё раз');
+        });
   }, []);
 
   const handleSearch = async () => {

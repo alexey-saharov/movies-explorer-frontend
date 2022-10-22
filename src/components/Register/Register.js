@@ -4,7 +4,7 @@ import '../Link/Link.css';
 import Logo from '../Logo/Logo';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-export default function Register({ onRegister, registerError, onLinkClick }) {
+export default function Register({ onRegister, onLinkClick }) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
@@ -66,9 +66,6 @@ export default function Register({ onRegister, registerError, onLinkClick }) {
             onChange={handleChange}
           />
           <span id="name-error" className="register__input-error">{errors.password}</span>
-
-          {/*todo информацию об ошибках показывать в InfoToolTipPopup*/}
-          <p className="register__error">{registerError}</p>
 
           <button
             type="submit"

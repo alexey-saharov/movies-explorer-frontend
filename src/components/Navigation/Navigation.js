@@ -2,16 +2,16 @@ import './Navigation.css';
 import '../Link/Link.css';
 import Account from '../Account/Account';
 
-export default function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
+export default function Navigation({ isNavMenuVisible, onClose, onLinkClick }) {
 
   return (
-    <section className={`navigation ${isNavMenuVisible && 'navigation_active'}`} onClick={onCLose}>
+    <section className={`navigation ${isNavMenuVisible && 'navigation_active'}`} onClick={onClose}>
 
       <button
         type="button"
         aria-label="закрыть"
         className="navigation__button-close link"
-        onClick={onCLose}
+        onClick={onClose}
       ></button>
       <nav className={`navigation__menu ${isNavMenuVisible && 'navigation__menu_active'}`} onClick={(e)=>{e.stopPropagation ()}}>
         <ul className="navigation__items">
@@ -22,7 +22,7 @@ export default function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
               className="navigation__link"
               onClick={e => {
                 onLinkClick(e, '/');
-                onCLose();
+                onClose();
               }}
             >
               Главная
@@ -34,7 +34,7 @@ export default function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
               className="navigation__link"
               onClick={e => {
                 onLinkClick(e, '/movies');
-                onCLose();
+                onClose();
               }}
             >
               Фильмы
@@ -46,7 +46,7 @@ export default function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
               className="navigation__link"
               onClick={e => {
                 onLinkClick(e, '/saved-movies');
-                onCLose();
+                onClose();
               }}
             >
               Сохранённые фильмы
@@ -56,7 +56,7 @@ export default function Navigation({ isNavMenuVisible, onCLose, onLinkClick }) {
 
         <Account onClick={e => {
           onLinkClick(e, '/profile');
-          onCLose();
+          onClose();
         }} />
       </nav>
     </section>

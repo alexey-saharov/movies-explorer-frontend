@@ -4,7 +4,7 @@ import '../Link/Link.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-export default function Profile({ onSignOut, onUpdateUser, profileError }) {
+export default function Profile({ onSignOut, onUpdateUser }) {
   const [isChanged, setIsChanged] = useState(false);
 
   const currentUser = useContext(CurrentUserContext);
@@ -67,7 +67,7 @@ export default function Profile({ onSignOut, onUpdateUser, profileError }) {
           <span id="email-error" className="profile__input-error">{errors.email}</span>
 
           {/*todo информацию об ошибках показывать в InfoToolTipPopup*/}
-          <p className="profile__error">{profileError}</p>
+          {/*<p className="profile__error">{profileError}</p>*/}
 
           <button
             type="submit"
