@@ -69,7 +69,7 @@
   .search-form__icon {
     display: block;
     flex-shrink: 0;
-    margin-right: 16px;
+    margin-right: 4px;
   }
 }
 
@@ -90,11 +90,11 @@
 }
 @media screen and (min-width: 768px) {
   .search-form__input {
-    padding-left: 0;
+    padding-left: 12px;
     font-size: 18px;
   }
   .search-form__input:focus {
-    padding-left: 19px;
+    /*padding-left: 19px;*/
   }
 }
 

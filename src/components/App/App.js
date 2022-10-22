@@ -24,8 +24,6 @@ export default function App() {
 
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorPopupMessage, setErrorPopupMessage] = useState('');
-  // const [registerError, setRegisterError] = useState('');
-  // const [loginError, setLoginError] = useState('');
   const navigateTo = useNavigate();
 
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -46,8 +44,7 @@ export default function App() {
   }
 
   const showMessage = (message) => {
-   (typeof(message) !== "string") && (message = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. ' +
-     'Подождите немного и попробуйте ещё раз');
+   (typeof(message) !== "string") && (message = 'Что-то пошло не так!');
     setErrorPopupMessage(message);
     setErrorPopupOpen(true);
   }
@@ -191,14 +188,22 @@ export default function App() {
           const vmc = JSON.parse(localStorage.getItem('visibleMoviesCount'));
           setVisibleMovies(fm.slice(0, vmc));
         })
-        .catch(err => showMessage(err));
+        .catch(err => {
+          console.log('App - handleDislike');
+          console.log(err);
+          // showMessage(err);
+        });
     }
   }
 
   const handleToggleLike = (id) => {
     const sm = JSON.parse(localStorage.getItem('savedMovies'));
-    let i = sm.findIndex(item => item.movieId === id);
-    (i > -1) ? handleDislike(id) : handleLike(id);
+    if (sm) {
+      let i = sm.findIndex(item => item.movieId === id);
+      (i > -1) ? handleDislike(id) : handleLike(id);
+    } else {
+      handleLike(id);
+    }
   }
 
 

@@ -72,8 +72,6 @@ export default function SavedMovies({ filteredSavedMovies, setFilteredSavedMovie
     setShortSavedMovies(!isShortSavedMovies);
   }
 
-
-
   return (
     <main>
       <SearchForm
