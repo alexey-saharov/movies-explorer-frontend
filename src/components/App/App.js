@@ -75,13 +75,12 @@ export default function App() {
     }
   }, [loggedIn]);
 
-  const handleRegister = ({ name, email, password }) => {
+  const handleRegister = ({ name, email, password })=> {
     return MainApi.register(name, email, password)
       .then(res => { return res })
       .then(() => {
-        //  todo пользователь сразу авторизуется
         setRegisterError('');
-        navigateTo('/movies');
+        handleLogin({ email, password });
       })
       .catch((err) => {
         setRegisterError(err);
