@@ -66,9 +66,6 @@ export default function Profile({ onSignOut, onUpdateUser }) {
           </div>
           <span id="email-error" className="profile__input-error">{errors.email}</span>
 
-          {/*todo информацию об ошибках показывать в InfoToolTipPopup*/}
-          {/*<p className="profile__error">{profileError}</p>*/}
-
           <button
             type="submit"
             disabled={!(isChanged && isValid)}

@@ -13,7 +13,10 @@ export default function Navigation({ isNavMenuVisible, onClose, onLinkClick }) {
         className="navigation__button-close link"
         onClick={onClose}
       ></button>
-      <nav className={`navigation__menu ${isNavMenuVisible && 'navigation__menu_active'}`} onClick={(e)=>{e.stopPropagation ()}}>
+      <nav
+        className={`navigation__menu ${isNavMenuVisible && 'navigation__menu_active'}`}
+        onClick={(e)=>{e.stopPropagation ()}}
+      >
         <ul className="navigation__items">
 
           <li className="navigation__item link">

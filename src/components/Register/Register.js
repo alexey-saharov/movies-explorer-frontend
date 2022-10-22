@@ -39,7 +39,6 @@ export default function Register({ onRegister, onLinkClick }) {
             onChange={handleChange}
           />
           <span id="name-error" className="register__input-error">{errors.name}</span>
-          {/*todo ошибки не влазят в экран*/}
 
           <p className="register__input-title">E-mail</p>
           <input

@@ -117,8 +117,6 @@ export default function App() {
   };
 
   const handleLike = (id) => {
-    console.log(`App - handleLike - start`);
-
     const fm = JSON.parse(localStorage.getItem('filteredMovies'));
     const i = fm.findIndex(item => item.id === id);
     if (i > -1) {
@@ -138,19 +136,12 @@ export default function App() {
         nameEN: movie.nameEN,
       };
 
-      console.log(`App - handleLike - id = ${id}`);
-
-
       MainApi.addMovie(newSavedMovie)
         .then(newSavedMovie => {
           let sm = JSON.parse(localStorage.getItem('savedMovies'));
-          console.log(`App - handleLike - sm.length = ${sm.length}`);
           sm = [...sm, newSavedMovie];
-          console.log(`App - handleLike - sm = ${JSON.stringify(sm)}`);
           sm.sort((a,b) => a.movieId - b.movieId);
-          console.log(`App - handleLike - sm = ${JSON.stringify(sm)}`);
 
-          console.log(`App - handleLike - sm.length = ${sm.length}`);
           localStorage.setItem('savedMovies', JSON.stringify(sm));
           setFilteredSavedMovies(sm);
 
@@ -166,16 +157,12 @@ export default function App() {
   }
 
   const handleDislike = (id) => {
-    console.log(`App - handleDislike - start`);
     const sm = JSON.parse(localStorage.getItem('savedMovies'));
     let i = sm.findIndex(item => item.movieId === id);
     if (i > -1) {
-      console.log(`App - handleDislike - id = ${id}`);
-
       MainApi.deleteMovie({ _id: sm[i]._id })
         .then(() => {
           sm.splice(i, 1);
-          console.log(`App - handleDislike - sm.length = ${sm.length}`);
           localStorage.setItem('savedMovies', JSON.stringify(sm));
           setFilteredSavedMovies(sm);
 
@@ -189,9 +176,7 @@ export default function App() {
           setVisibleMovies(fm.slice(0, vmc));
         })
         .catch(err => {
-          console.log('App - handleDislike');
-          console.log(err);
-          // showMessage(err);
+          showMessage(err);
         });
     }
   }

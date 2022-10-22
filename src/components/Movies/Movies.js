@@ -6,7 +6,8 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { getFilteredMovies } from '../MoviesFilter/MoviesFilter';
 import * as MainApi from "../../utils/MainApi";
 
-export default function Movies({ filteredMovies, setFilteredMovies, visibleMovies, setVisibleMovies, onError, onToggleLike }) {
+export default function Movies({ filteredMovies, setFilteredMovies, visibleMovies, setVisibleMovies, onError,
+                                 onToggleLike }) {
 
   const [stringMovies, setStringMovies] = useState('');
   const [isShortMovies, setShortMovies] = useState(true);

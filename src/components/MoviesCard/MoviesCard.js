@@ -38,6 +38,7 @@ export default function MoviesCard({ movie, isTypeSavedMovies, onToggleLike }) {
         target="_blank"
         aria-label="Cсылка на трейлер"
         className="movies-card__img-link link"
+        rel="noreferrer"
       >
         <img
           src={url}

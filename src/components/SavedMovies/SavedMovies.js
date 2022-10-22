@@ -13,24 +13,24 @@ export default function SavedMovies({ filteredSavedMovies, setFilteredSavedMovie
   const [isPreloaderActive, setPreloaderActive] = useState(false);
 
   useEffect(() => {
-    const filteredSavedMoviesLS = JSON.parse(localStorage.getItem('filteredSavedMovies'));
-    (filteredSavedMoviesLS && filteredSavedMoviesLS.length > 0) && setFilteredSavedMovies(filteredSavedMoviesLS);
+    const fsm = JSON.parse(localStorage.getItem('filteredSavedMovies'));
+    (fsm && fsm.length > 0) && setFilteredSavedMovies(fsm);
 
-    const stringSavedMoviesLS = localStorage.getItem('stringSavedMovies');
-    stringSavedMoviesLS && setStringSavedMovies(stringSavedMoviesLS);
+    const ssm = localStorage.getItem('stringSavedMovies');
+    ssm && setStringSavedMovies(ssm);
 
-    const isShortSavedMoviesLS = JSON.parse(localStorage.getItem('isShortSavedMovies'));
-    (isShortSavedMoviesLS !== null) && setShortSavedMovies(isShortSavedMoviesLS);
+    const issm = JSON.parse(localStorage.getItem('isShortSavedMovies'));
+    (issm !== null) && setShortSavedMovies(issm);
 
     const sm = JSON.parse(localStorage.getItem('savedMovies'));
 
     (sm)
-      ? ((stringSavedMoviesLS) && (isShortSavedMoviesLS))
+      ? ((ssm) && (issm))
         ? setFilteredSavedMovies(
             getFilteredMovies({
               movies: sm,
-              str: stringSavedMoviesLS,
-              shortMovies: isShortSavedMoviesLS,
+              str: ssm,
+              shortMovies: issm,
             })
           )
         : setFilteredSavedMovies(sm)

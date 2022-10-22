@@ -93,9 +93,6 @@
     padding-left: 12px;
     font-size: 18px;
   }
-  .search-form__input:focus {
-    /*padding-left: 19px;*/
-  }
 }
 
 .search-form__input:focus {
