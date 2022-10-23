@@ -63,7 +63,7 @@
 }
 
 .register__input {
-  margin-bottom: 20px;
+  margin-bottom: 4px;
   padding-left: 15px;
   box-sizing: border-box;
   width: 100%;
@@ -77,9 +77,12 @@
   border-radius: 8px;
   color: #fff;
   background-color: #2F2F2F;
+  transition: background-color .3s;
+
 }
-.register__input:last-of-type {
-  margin-bottom: 10px;
+
+.register__input_invalid {
+  color: #EE3465;
 }
 
 .register__input:focus {
@@ -87,8 +90,10 @@
   background-color: #f2f2f2;
 }
 
-.register__error {
-  margin-bottom: 157px;
+.register__input-error {
+  margin-bottom: 4px;
+  display: block;
+  height: 12px;
   width: 100%;
   text-align: left;
   font-weight: 400;
@@ -96,10 +101,26 @@
   line-height: 12px;
   color: #EE3465;
 }
+
+.register__input-error:last-of-type {
+  margin-bottom: 113px;
+}
 @media screen and (min-width: 768px) {
-  .register__error {
-    margin-bottom: 69px;
+  .register__input-error:last-of-type {
+    margin-bottom: 25px;
   }
+}
+
+.register__error {
+  margin: 0 auto 20px;
+  display: block;
+  height: 30px;
+  width: 100%;
+  text-align: left;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #EE3465;
 }
 
 .register__button {
@@ -112,9 +133,9 @@
   font-size: 12px;
   line-height: 15px;
   border: none;
-  cursor: pointer;
   color: #fff;
-  background-color: #4285F4;
+  background-color: #8B8B8B;
+  transition: background-color .2s;
 }
 @media screen and (min-width: 768px) {
   .register__button {
@@ -122,6 +143,10 @@
     font-size: 14px;
     line-height: 17px;
   }
+}
+.register__button_active {
+  cursor: pointer;
+  background-color: #4285F4;
 }
 
 .register__registered-text {

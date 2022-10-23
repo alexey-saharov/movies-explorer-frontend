@@ -4,6 +4,7 @@
   z-index: 100;
   visibility: hidden;
   opacity: 0;
+  cursor: pointer;
   background-color: rgba(0, 0, 0, .3);
   transition: visibility .4s, opacity .4s ease-in-out;
 }
@@ -22,7 +23,7 @@
   right: 21px;
   width: 16px;
   height: 16px;
-  background-image: url('../../images/navigation-close-button.svg');
+  background-image: url('../../images/navigation&popup-close-button.svg');
   background-position: center;
   background-size: 100%;
   cursor: pointer;
@@ -106,6 +107,7 @@
 }
 
 .navigation__link {
+  margin: 0;
   padding-bottom: 7px;
   box-sizing: border-box;
   font-weight: 500;

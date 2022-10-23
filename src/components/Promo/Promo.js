@@ -1,7 +1,7 @@
 import './Promo.css';
 import webWorld from '../../images/promo-web-world.svg';
 
-function Promo() {
+export default function Promo() {
   return (
     <section className="promo">
       <div className="promo__items">
@@ -16,5 +16,3 @@ function Promo() {
     </section>
   );
 }
-
-export default Promo;
