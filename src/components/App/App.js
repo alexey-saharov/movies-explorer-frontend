@@ -69,6 +69,11 @@ export default function App() {
   }
 
   useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      auth();
+    }
+
     if (loggedIn) {
       const urls = ["/movies", "/saved-movies", "/profile"];
       urls.forEach(item => {
@@ -77,11 +82,6 @@ export default function App() {
           navigateTo(item);
         }
       });
-    } else {
-      const jwt = localStorage.getItem('jwt');
-      if (jwt) {
-        auth();
-      }
     }
   }, [loggedIn]);
 
