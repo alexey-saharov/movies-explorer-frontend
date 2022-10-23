@@ -5,6 +5,7 @@ import searchFormIcon from '../../images/searchform-icon.svg';
 
 export default function SearchForm({ string, setString, onSearch, onStringChange, isShortMovies,
                                      onToggleShortMovies, isTypeSavedMovies }) {
+  const [isInputsDisabled, setInputsDisabled] = useState(false);
   const [searchMovieError, setSearchMovieError] = useState('');
 
   const handleValidation = () => {
@@ -19,9 +20,11 @@ export default function SearchForm({ string, setString, onSearch, onStringChange
     setSearchMovieError('');
   }, [string]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    (isTypeSavedMovies || handleValidation()) && onSearch();
+    await setInputsDisabled(true);
+    (isTypeSavedMovies || handleValidation()) && await onSearch();
+    setInputsDisabled(false);
   }
 
   const handleInputChange = ({ target }) => {
@@ -43,6 +46,7 @@ export default function SearchForm({ string, setString, onSearch, onStringChange
             className="search-form__input"
             required
             placeholder="Фильм"
+            disabled={isInputsDisabled}
             value={string}
             onChange={handleInputChange}
           />

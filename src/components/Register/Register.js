@@ -1,19 +1,22 @@
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import './Register.css';
 import '../Link/Link.css';
 import Logo from '../Logo/Logo';
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
 export default function Register({ onRegister, onLinkClick }) {
+  const [isInputsDisabled, setInputsDisabled] = useState(false);
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
     resetForm();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onRegister(values);
+    await setInputsDisabled(true);
+    await onRegister(values);
+    setInputsDisabled(false);
   }
 
   return (
@@ -35,6 +38,7 @@ export default function Register({ onRegister, onLinkClick }) {
             maxLength="40"
             required
             placeholder="Имя"
+            disabled={isInputsDisabled}
             value={values.name}
             onChange={handleChange}
           />
@@ -48,6 +52,7 @@ export default function Register({ onRegister, onLinkClick }) {
             className={`register__input ${errors.email && ' register__input_invalid'}`}
             required
             placeholder="Почта"
+            disabled={isInputsDisabled}
             value={values.email}
             onChange={handleChange}
           />
@@ -55,12 +60,13 @@ export default function Register({ onRegister, onLinkClick }) {
 
           <p className="register__input-title">Пароль</p>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             className={`register__input ${errors.password && ' register__input_invalid'}`}
             required
             placeholder=""
+            disabled={isInputsDisabled}
             value={values.password}
             onChange={handleChange}
           />

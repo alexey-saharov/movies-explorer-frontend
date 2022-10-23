@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import * as MainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -25,6 +25,7 @@ export default function App() {
   const [isErrorPopupOpen, setErrorPopupOpen] = useState(false);
   const [errorPopupMessage, setErrorPopupMessage] = useState('');
   const navigateTo = useNavigate();
+  const { state } = useLocation();
 
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [visibleMovies, setVisibleMovies] = useState([]);
@@ -68,9 +69,19 @@ export default function App() {
   }
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      auth();
+    if (loggedIn) {
+      const urls = ["/movies", "/saved-movies", "/profile"];
+      urls.forEach(item => {
+        if (state?.path === item) {
+          state.path = "";
+          navigateTo(item);
+        }
+      });
+    } else {
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
+        auth();
+      }
     }
   }, [loggedIn]);
 
@@ -105,6 +116,13 @@ export default function App() {
     localStorage.clear();
     navigateTo('/');
     setLoggedIn(false);
+    setCurrentUser({});
+    setNavMenuVisible(false);
+    setErrorPopupOpen(false);
+    setErrorPopupMessage('');
+    setFilteredMovies([]);
+    setVisibleMovies([]);
+    setFilteredSavedMovies([]);
   }
 
   const handleUpdateUser = ({ name, email }) => {
@@ -211,7 +229,7 @@ export default function App() {
         } />
 
         <Route exact path="/movies" element={
-          <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
+          <RequireAuth loggedIn={loggedIn} redirectTo="/">
             <Header
               isTypeMain={false}
               loggedIn={loggedIn}
@@ -231,7 +249,7 @@ export default function App() {
         } />
 
         <Route exact path="/saved-movies" element={
-          <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
+          <RequireAuth loggedIn={loggedIn} redirectTo="/">
             <Header
               isTypeMain={false}
               loggedIn={loggedIn}
@@ -249,7 +267,7 @@ export default function App() {
         } />
 
         <Route exact path="/profile" element={
-          <RequireAuth loggedIn={loggedIn} redirectTo="/signin">
+          <RequireAuth loggedIn={loggedIn} redirectTo="/">
             <CurrentUserContext.Provider value={currentUser}>
               <Header
                 isTypeMain={false}

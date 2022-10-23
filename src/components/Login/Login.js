@@ -1,19 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import './Login.css';
 import '../Link/Link.css';
 import Logo from "../Logo/Logo";
 import { useFormWithValidation } from '../FormValidator/FormValidator';
 
 export default function Login({ onLogin, onLinkClick }) {
+  const [isInputsDisabled, setInputsDisabled] = useState(false);
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
     resetForm();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin(values);
+    await setInputsDisabled(true);
+    await onLogin(values);
+    setInputsDisabled(false);
   }
 
   return (
@@ -33,6 +36,7 @@ export default function Login({ onLogin, onLinkClick }) {
             className={`login__input ${errors.name && ' login__input_error'}`}
             required
             placeholder="Почта"
+            disabled={isInputsDisabled}
             value={values.email}
             onChange={handleChange}
           />
@@ -40,12 +44,13 @@ export default function Login({ onLogin, onLinkClick }) {
 
           <p className="login__input-title">Пароль</p>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             className={`login__input ${errors.name && ' login__input_error'}`}
             required
             placeholder=""
+            disabled={isInputsDisabled}
             value={values.password}
             onChange={handleChange}
           />

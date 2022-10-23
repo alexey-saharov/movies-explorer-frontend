@@ -6,6 +6,7 @@ import { useFormWithValidation } from '../FormValidator/FormValidator';
 
 export default function Profile({ onSignOut, onUpdateUser }) {
   const [isChanged, setIsChanged] = useState(false);
+  const [isInputsDisabled, setInputsDisabled] = useState(false);
 
   const currentUser = useContext(CurrentUserContext);
   const { values, setValues, handleChange, errors, isValid } = useFormWithValidation();
@@ -22,10 +23,12 @@ export default function Profile({ onSignOut, onUpdateUser }) {
     }
   },[values])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsChanged(false);
-    onUpdateUser(values);
+    await setInputsDisabled(true);
+    await setIsChanged(false);
+    await onUpdateUser(values);
+    setInputsDisabled(false);
   }
 
   return (
@@ -43,6 +46,7 @@ export default function Profile({ onSignOut, onUpdateUser }) {
               className="profile__input-field"
               required
               placeholder="Имя"
+              disabled={isInputsDisabled}
               value={values.name}
               onChange={handleChange}
             />
@@ -60,6 +64,7 @@ export default function Profile({ onSignOut, onUpdateUser }) {
               className="profile__input-field"
               required
               placeholder="Почта"
+              disabled={isInputsDisabled}
               value={values.email}
               onChange={handleChange}
             />

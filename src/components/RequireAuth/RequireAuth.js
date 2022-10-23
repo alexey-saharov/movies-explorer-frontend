@@ -1,5 +1,6 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 export default function RequireAuth({ loggedIn, children, redirectTo }) {
-  return loggedIn ? children : <Navigate to={redirectTo} />;
+  const location = useLocation();
+  return loggedIn ? children : <Navigate to={redirectTo} replace state={{ path: location.pathname }} />;
 }
