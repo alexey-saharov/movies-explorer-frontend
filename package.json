@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "scp -r ./build/* lexa@84.252.142.45:/home/lexa/movies-explorer-frontend"
+    "deploy": "scp -r ./build/* aleksey@77.232.137.56:/home/aleksey/movies-explorer/frontend"
   },
   "eslintConfig": {
     "extends": [

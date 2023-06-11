@@ -29,7 +29,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <p className="footer__copyright">&#169;2022</p>
+        <p className="footer__copyright">&#169;{new Date().getFullYear()}</p>
       </div>
 
     </section>
