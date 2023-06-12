@@ -1,6 +1,10 @@
 @import url(../../vendor/normalize.css);
 @import url(../../vendor/fonts/fonts.css);
 
+html {
+  scroll-behavior: smooth;
+}
+
 .app {
   font-family: Inter, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
