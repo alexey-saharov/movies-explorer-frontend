@@ -1,7 +1,7 @@
 import './Portfolio.css';
 import '../Link/Link.css';
 
-function Portfolio() {
+export default function Portfolio() {
   return (
     <section className="portfolio">
 
@@ -25,8 +25,6 @@ function Portfolio() {
           </a>
         </li>
 
-        <div className="portfolio__line"></div>
-
         <li className="portfolio__item">
           <a className="portfolio__item-type link"
              href="https://alexey-saharov.github.io/russian-travel/"
@@ -44,18 +42,16 @@ function Portfolio() {
           </a>
         </li>
 
-        <div className="portfolio__line"></div>
-
         <li className="portfolio__item">
           <a className="portfolio__item-type link"
-            href="https://mesto.lexasaharov.nomoredomains.sbs/"
+            href="https://mesto.aas1.ru/"
             target="_blank"
              rel="noreferrer"
           >
             Одностраничное приложение
           </a>
           <a className="portfolio__arrow link"
-             href="https://mesto.lexasaharov.nomoredomains.sbs/"
+             href="https://mesto.aas1.ru/"
              target="_blank"
              rel="noreferrer"
           >
@@ -67,5 +63,3 @@ function Portfolio() {
     </section>
   );
 }
-
-export default Portfolio;

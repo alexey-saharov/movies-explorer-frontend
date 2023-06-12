@@ -4,43 +4,35 @@ import menuIcon from '../../images/header-menu-icon.svg';
 import Logo from '../Logo/Logo';
 import Account from '../Account/Account';
 
-function Header({ parent, onNavMenuClick }) {
-
-  const typeMain = (parent === 'Main');
+export default function Header({ isTypeMain, loggedIn, onNavMenuClick, onLinkClick }) {
 
   return (
-    <section className={`header ${typeMain && 'header_main'}`}>
+    <section className={`header ${isTypeMain && 'header_main'}`}>
 
       <div className="header__items">
-        <Logo />
+        <Logo onLinkClick={onLinkClick} />
 
-        {(typeMain)
+        {(loggedIn)
         ?
-          <nav className="header__menu-main">
-            <a href="/signup" className="header__menu-main-item link">Регистрация</a>
-            <a href="/signin"
-               className="header__menu-main-item header__menu-main-item_button link"
-            >
-              Войти
-            </a>
-          </nav>
-        :
           <>
             <nav className="header__menu-common">
               <div className="header__menu-common-items">
-                <a href="/movies"
+                <a
+                  href="/movies"
                   className="header__menu-common-item link"
+                  onClick={e => {onLinkClick(e, '/movies')}}
                 >
                   Фильмы
                 </a>
-                <a href="/saved-movies"
+                <a
+                  href="/saved-movies"
                   className="header__menu-common-item link"
+                  onClick={e => {onLinkClick(e, '/saved-movies')}}
                 >
                   Сохранённые фильмы
                 </a>
               </div>
-              <Account />
-
+              <Account onClick={e => {onLinkClick(e, '/profile')}} />
             </nav>
 
             <button
@@ -52,11 +44,26 @@ function Header({ parent, onNavMenuClick }) {
             >
             </button>
           </>
+        :
+          <nav className="header__menu-main">
+            <a
+              href="/signup"
+              className="header__menu-main-item link"
+              onClick={e => {onLinkClick(e, '/signup')}}
+            >
+              Регистрация
+            </a>
+            <a
+              href="/signin"
+              className="header__menu-main-item header__menu-main-item_button link"
+              onClick={e => {onLinkClick(e, '/signin')}}
+            >
+              Войти
+            </a>
+          </nav>
         }
       </div>
 
     </section>
   );
 }
-
-export default Header;

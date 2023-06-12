@@ -1,7 +1,7 @@
 import './Footer.css';
 import '../Link/Link.css';
 
-function Footer() {
+export default function Footer() {
   return (
 
     <section className="footer">
@@ -29,11 +29,9 @@ function Footer() {
           </a>
         </div>
 
-        <p className="footer__copyright">&#169;2022</p>
+        <p className="footer__copyright">&#169;{new Date().getFullYear()}</p>
       </div>
 
     </section>
   );
 }
-
-export default Footer;

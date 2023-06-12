@@ -1,18 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './Login.css';
 import '../Link/Link.css';
 import Logo from "../Logo/Logo";
+import { useFormWithValidation } from '../FormValidator/FormValidator';
 
-function Login() {
-  const [email, setEmail] = useState('pochta@yandex.ru');
-  const [password, setPassword] = useState('');
+export default function Login({ onLogin, onLinkClick }) {
+  const [isInputsDisabled, setInputsDisabled] = useState(false);
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
+  useEffect(() => {
+    resetForm();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await setInputsDisabled(true);
+    await onLogin(values);
+    setInputsDisabled(false);
+  }
 
   return (
     <>
       <section className="login">
-        <form action="" className="login__form">
+        <form action="" className="login__form" onSubmit={handleSubmit}>
           <div className="login__logo-container">
-            <Logo />
+            <Logo onLinkClick={onLinkClick} />
           </div>
           <h2 className="login__title">Рады видеть!</h2>
 
@@ -21,30 +33,48 @@ function Login() {
             type="text"
             id="email"
             name="email"
-            className="login__input"
+            className={`login__input ${errors.name && ' login__input_error'}`}
             required
             placeholder="Почта"
-            value={email}
-            onChange={({ target }) => setEmail(target.value)}
+            disabled={isInputsDisabled}
+            value={values.email}
+            onChange={handleChange}
           />
+          <span id="email-error" className="login__input-error">{errors.email}</span>
 
           <p className="login__input-title">Пароль</p>
           <input
-            type="text"
-            id="email"
-            name="email"
-            className="login__input"
+            type="password"
+            id="password"
+            name="password"
+            className={`login__input ${errors.name && ' login__input_error'}`}
             required
             placeholder=""
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
+            disabled={isInputsDisabled}
+            value={values.password}
+            onChange={handleChange}
           />
+          <span id="password-error" className="login__input-error">{errors.password}</span>
 
-          <span id="name-error" className="login__error">Что-то пошло не так...</span>
-
-          <button type="submit" className="login__button link">Войти</button>
+          <button
+            type="submit"
+            aria-label="Авторизоваться"
+            disabled={!isValid}
+            className={`login__button ${isValid && 'link login__button_active'}`}
+          >
+            Войти
+          </button>
           <p className="login__registered-text">
-            Ещё не зарегистрированы? <a href="/signup" className="login__registered-text-link link">Регистрация</a>
+            Ещё не зарегистрированы?
+            <a
+              href="/signup"
+              className="login__registered-text-link link"
+              onClick={e => {
+                onLinkClick(e, '/signup');
+              }}
+            >
+              Регистрация
+            </a>
           </p>
 
         </form>
@@ -52,5 +82,3 @@ function Login() {
     </>
   );
 }
-
-export default Login;

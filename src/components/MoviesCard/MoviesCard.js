@@ -1,32 +1,59 @@
 import './MoviesCard.css';
-import moviesCardTestPic from '../../images/moviescard-test-pic.png';
+import '../Link/Link.css';
 import moviesCardLike from '../../images/moviescard-like.svg';
 import moviesCardIsLiked from '../../images/moviescard-isliked.svg';
-import moviesCardDislikeMySavedMovie from '../../images/moviescard-dislike-my-saved-movie.svg';
+import moviesCardDislikeMySavedMovie from '../../images/moviescard-dislike-saved-movie.svg';
+import { MOVIES_URL } from "../../utils/constants";
 
-function MoviesCard({ isLiked, mySavedMovie }) {
+export default function MoviesCard({ movie, isTypeSavedMovies, onToggleLike }) {
 
-  const likeImage = (mySavedMovie)
+  const url = (isTypeSavedMovies)
+    ? movie.image
+    : MOVIES_URL.slice(0, MOVIES_URL.lastIndexOf('/')) + movie.image.url;
+
+  const minutes = movie.duration;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  const hStr = (h > 0) ? `${h}ч ` : '';
+  const mStr = (m > 0) ? `${m}м` : '';
+  const duration = hStr + mStr;
+
+  const likeImage = (isTypeSavedMovies)
     ? moviesCardDislikeMySavedMovie
-    : ((isLiked) ? moviesCardIsLiked : moviesCardLike);
+    : ((movie.isLiked) ? moviesCardIsLiked : moviesCardLike);
 
-  const title = '33 слова о дизайне';
-  const duration = '1ч 42м';
+  const id = (isTypeSavedMovies)
+    ? movie.movieId
+    : movie.id;
 
-  function handleLikeClick() {
-
+  const handleToggleLike = () => {
+    onToggleLike(id);
   }
 
   return (
     <>
-      <img src={moviesCardTestPic} alt={'testPic'} className="movies-card__img" />
+
+      <a
+        href={movie.trailerLink}
+        target="_blank"
+        aria-label="Cсылка на трейлер"
+        className="movies-card__img-link link"
+        rel="noreferrer"
+      >
+        <img
+          src={url}
+          alt={`Изображение фильма ${movie.nameRU}`}
+          className="movies-card__img"
+        />
+      </a>
+
       <div className="movies-card__description">
-        <h3 className="movies-card__title">{title}</h3>
+        <h3 className="movies-card__title">{movie.nameRU}</h3>
         <button
           type="button"
           aria-label="добавить в избранное"
           className="movies-card__like link"
-          onClick={handleLikeClick}
+          onClick={handleToggleLike}
           style = {{ backgroundImage: `url(${likeImage})`}}
         >
         </button>
@@ -36,5 +63,3 @@ function MoviesCard({ isLiked, mySavedMovie }) {
     </>
   );
 }
-
-export default MoviesCard;

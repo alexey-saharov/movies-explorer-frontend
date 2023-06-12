@@ -1,7 +1,7 @@
 import './AboutMe.css';
 import '../Link/Link.css';
 
-function AboutMe() {
+export default function AboutMe() {
   return (
     <section className="about-me">
      <h2 className="about-me__title">Студент</h2>
@@ -20,7 +20,12 @@ function AboutMe() {
             «Газпром недра». После того, как прошёл курс по веб-разработке,
             занимаюсь проектами в компании и фриланс-заказами.
           </div>
-          <a className="about-me__githubLink link" href="https://github.com/alexey-saharov" target="_blank">
+          <a
+            className="about-me__githubLink link"
+            href="https://github.com/alexey-saharov"
+            target="_blank"
+            rel="noreferrer"
+          >
             Github
           </a>
         </div>
@@ -29,5 +34,3 @@ function AboutMe() {
     </section>
   );
 }
-
-export default AboutMe;
